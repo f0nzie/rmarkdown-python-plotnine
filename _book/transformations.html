@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Ch. 4 Transformations | Data Visualization with PlotNine</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Ch. 4 Transformations | Data Visualization with PlotNine" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ch. 4 Transformations | Data Visualization with PlotNine" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Jeroen Janssens" />
+
+
+<meta name="date" content="2020-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="aesthetics-and-geometry.html"/>
+<link rel="next" href="scales-and-zooming.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Visualization with PlotNine</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html"><i class="fa fa-check"></i><b>2</b> Data visualisation with <code>plotnine</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#prerequisites"><i class="fa fa-check"></i><b>2.1.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#first-steps"><i class="fa fa-check"></i><b>2.2</b> First steps</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#the-mpg-dataframe"><i class="fa fa-check"></i><b>2.2.1</b> The <code>mpg</code> DataFrame</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#creating-a-ggplot"><i class="fa fa-check"></i><b>2.2.2</b> Creating a ggplot</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#a-graphing-template"><i class="fa fa-check"></i><b>2.2.3</b> A graphing template</a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#exercises"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html"><i class="fa fa-check"></i><b>3</b> Aesthetics and Geometry</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#aesthetic-mappings"><i class="fa fa-check"></i><b>3.1</b> Aesthetic mappings</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-1"><i class="fa fa-check"></i><b>3.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#common-problems"><i class="fa fa-check"></i><b>3.2</b> Common problems</a></li>
+<li class="chapter" data-level="3.3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#facets"><i class="fa fa-check"></i><b>3.3</b> Facets</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-2"><i class="fa fa-check"></i><b>3.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#geometric-objects"><i class="fa fa-check"></i><b>3.4</b> Geometric objects</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-3"><i class="fa fa-check"></i><b>3.4.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>4</b> Transformations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="transformations.html"><a href="transformations.html#statistical-transformations"><i class="fa fa-check"></i><b>4.1</b> Statistical transformations</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="transformations.html"><a href="transformations.html#exercises-4"><i class="fa fa-check"></i><b>4.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="transformations.html"><a href="transformations.html#position-adjustments"><i class="fa fa-check"></i><b>4.2</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="transformations.html"><a href="transformations.html#exercises-5"><i class="fa fa-check"></i><b>4.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="transformations.html"><a href="transformations.html#coordinate-systems"><i class="fa fa-check"></i><b>4.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="transformations.html"><a href="transformations.html#exercises-6"><i class="fa fa-check"></i><b>4.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="transformations.html"><a href="transformations.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>4.4</b> The layered grammar of graphics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html"><i class="fa fa-check"></i><b>5</b> Scales and Zooming</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#scales"><i class="fa fa-check"></i><b>5.1</b> Scales</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#axis-ticks-and-legend-keys"><i class="fa fa-check"></i><b>5.1.1</b> Axis ticks and legend keys</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#legend-layout"><i class="fa fa-check"></i><b>5.1.2</b> Legend layout</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#replacing-a-scale"><i class="fa fa-check"></i><b>5.1.3</b> Replacing a scale</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#exercises-7"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#zooming"><i class="fa fa-check"></i><b>5.2</b> Zooming</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html"><i class="fa fa-check"></i><b>6</b> Graphics for communication</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#labels"><i class="fa fa-check"></i><b>6.2</b> Labels</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-8"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#annotations"><i class="fa fa-check"></i><b>6.3</b> Annotations</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-9"><i class="fa fa-check"></i><b>6.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#themes"><i class="fa fa-check"></i><b>6.4</b> Themes</a></li>
+<li class="chapter" data-level="6.5" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#saving-your-plots"><i class="fa fa-check"></i><b>6.5</b> Saving your plots</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#figure-sizing"><i class="fa fa-check"></i><b>6.5.1</b> Figure sizing</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://datascienceworkshops.com/blog/plotnine-grammar-of-graphics-for-python/" target="blank">Original article by Jeroen Janssens</a></li>
+<li><a href="https://github.com/f0nzie/rmarkdown-python-plotnine/" target="blank">This book repo by Alfonso R. Reyes</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization with PlotNine</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="transformations" class="section level1" number="4">
+<h1><span class="header-section-number">Ch. 4</span> Transformations</h1>
+<div id="statistical-transformations" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Statistical transformations</h2>
+<p>Next, let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with <code>geom_bar()</code>. The following chart displays the total number of diamonds in the <code>diamonds</code> dataset, grouped by <code>cut</code>. The <code>diamonds</code> dataset comes in plotnine and contains information about ~54,000 diamonds, including the <code>price</code>, <code>carat</code>, <code>color</code>, <code>clarity</code>, and <code>cut</code> of each diamond. The chart shows that more diamonds are available with high quality cuts than with low quality cuts.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="transformations.html#cb46-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb46-2"><a href="transformations.html#cb46-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-49-1.png" width="565" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>On the x-axis, the chart displays <code>cut</code>, a variable from <code>diamonds</code>. On the y-axis, it displays count, but count is not a variable in <code>diamonds</code>! Where does count come from? Many graphs, like scatterplots, plot the raw values of your dataset. Other graphs, like bar charts, calculate new values to plot:</p>
+<ul>
+<li>bar charts, histograms, and frequency polygons bin your data
+and then plot bin counts, the number of points that fall in each bin.</li>
+<li>smoothers fit a model to your data and then plot predictions from the
+model.</li>
+<li>boxplots compute a robust summary of the distribution and then display a
+specially formatted box.</li>
+</ul>
+<p>The algorithm used to calculate new values for a graph is called a <strong>stat</strong>, short for statistical transformation. The figure below describes how this process works with <code>geom_bar()</code>.</p>
+<p><img src="images/visualization-stat-bar.png" width="900" style="margin-left: 0px;"></p>
+<p>You can learn which stat a geom uses by inspecting the default value for the <code>stat</code> argument. For example, <code>?geom_bar</code> shows that the default value for <code>stat</code> is “count,” which means that <code>geom_bar()</code> uses <code>stat_count()</code>. <code>stat_count()</code> is documented on the same page as <code>geom_bar()</code>, and if you scroll down you can find a section called “Computed variables.” That describes how it computes two new variables: <code>count</code> and <code>prop</code>.</p>
+<p>You can generally use geoms and stats interchangeably. For example, you can recreate the previous plot using <code>stat_count()</code> instead of <code>geom_bar()</code>:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb47-1"><a href="transformations.html#cb47-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb47-2"><a href="transformations.html#cb47-2" aria-hidden="true" tabindex="-1"></a>stat_count(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-50-1.png" width="565" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>This works because every geom has a default stat; and every stat has a default geom. This means that you can typically use geoms without worrying about the underlying statistical transformation. There are three reasons you might need to use a stat explicitly:</p>
+<ol style="list-style-type: decimal">
+<li><p>You might want to override the default stat. In the code below, I change
+the stat of <code>geom_bar()</code> from count (the default) to identity. This lets
+me map the height of the bars to the raw values of a “y” variable.
+Unfortunately when people talk about bar charts casually, they might be
+referring to this type of bar chart, where the height of the bar is already
+present in the data, or the previous bar chart where the height of the bar
+is generated by counting rows.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="transformations.html#cb48-1" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> pd.DataFrame({<span class="st">&quot;cut&quot;</span>: [<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>],</span>
+<span id="cb48-2"><a href="transformations.html#cb48-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;freq&quot;</span>: [<span class="dv">1610</span>, <span class="dv">4906</span>, <span class="dv">12082</span>, <span class="dv">13791</span>, <span class="dv">21551</span>]})</span>
+<span id="cb48-3"><a href="transformations.html#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="transformations.html#cb48-4" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>demo) <span class="op">+\</span></span>
+<span id="cb48-5"><a href="transformations.html#cb48-5" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;freq&quot;</span>), stat<span class="op">=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-51-1.png" width="565" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p></li>
+<li><p>You might want to override the default mapping from transformed variables to aesthetics. For example, you might want to display a bar chart of proportion, rather than count:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="transformations.html#cb49-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb49-2"><a href="transformations.html#cb49-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;..prop..&quot;</span>, group<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-52-1.png" width="545" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" />
+To find the variables computed by the stat, look for the help section
+titled “computed variables.”</p></li>
+<li><p>You might want to draw greater attention to the statistical transformation
+in your code. For example, you might use <code>stat_summary()</code>, which
+summarises the y values for each unique x value, to draw
+attention to the summary that you’re computing:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="transformations.html#cb50-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb50-2"><a href="transformations.html#cb50-2" aria-hidden="true" tabindex="-1"></a>stat_summary(</span>
+<span id="cb50-3"><a href="transformations.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;depth&quot;</span>),</span>
+<span id="cb50-4"><a href="transformations.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    fun_ymin<span class="op">=</span>np.<span class="bu">min</span>,</span>
+<span id="cb50-5"><a href="transformations.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    fun_ymax<span class="op">=</span>np.<span class="bu">max</span>,</span>
+<span id="cb50-6"><a href="transformations.html#cb50-6" aria-hidden="true" tabindex="-1"></a>    fun_y<span class="op">=</span>np.median</span>
+<span id="cb50-7"><a href="transformations.html#cb50-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-53-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p></li>
+<li><p>You might want to override the default stat. In the code below, I change
+the stat of <code>geom_bar()</code> from count (the default) to identity. This lets
+me map the height of the bars to the raw values of a “y” variable.
+Unfortunately when people talk about bar charts casually, they might be
+referring to this type of bar chart, where the height of the bar is already
+present in the data, or the previous bar chart where the height of the bar
+is generated by counting rows.</p></li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="transformations.html#cb51-1" aria-hidden="true" tabindex="-1"></a>demo <span class="op">=</span> pd.DataFrame({<span class="st">&quot;cut&quot;</span>: [<span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Premium&quot;</span>, <span class="st">&quot;Ideal&quot;</span>],</span>
+<span id="cb51-2"><a href="transformations.html#cb51-2" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot;freq&quot;</span>: [<span class="dv">1610</span>, <span class="dv">4906</span>, <span class="dv">12082</span>, <span class="dv">13791</span>, <span class="dv">21551</span>]})</span>
+<span id="cb51-3"><a href="transformations.html#cb51-3" aria-hidden="true" tabindex="-1"></a>                         </span>
+<span id="cb51-4"><a href="transformations.html#cb51-4" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>demo) <span class="op">+\</span></span>
+<span id="cb51-5"><a href="transformations.html#cb51-5" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;freq&quot;</span>), stat<span class="op">=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-54-1.png" width="565" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>You might want to override the default mapping from transformed variables to aesthetics. For example, you might want to display a bar chart of proportion, rather than count:</li>
+</ol>
+<div class="sourceCode" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="transformations.html#cb52-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb52-2"><a href="transformations.html#cb52-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;..prop..&quot;</span>, group<span class="op">=</span><span class="dv">1</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-55-1.png" width="545" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>To find the variables computed by the stat, look for the help section
+titled “computed variables.”</p>
+<ol start="3" style="list-style-type: decimal">
+<li>You might want to draw greater attention to the statistical transformation
+in your code. For example, you might use <code>stat_summary()</code>, which
+summarises the y values for each unique x value, to draw
+attention to the summary that you’re computing:</li>
+</ol>
+<div class="sourceCode" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="transformations.html#cb53-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb53-2"><a href="transformations.html#cb53-2" aria-hidden="true" tabindex="-1"></a>stat_summary(</span>
+<span id="cb53-3"><a href="transformations.html#cb53-3" aria-hidden="true" tabindex="-1"></a>        mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;depth&quot;</span>),</span>
+<span id="cb53-4"><a href="transformations.html#cb53-4" aria-hidden="true" tabindex="-1"></a>        fun_ymin<span class="op">=</span>np.<span class="bu">min</span>,</span>
+<span id="cb53-5"><a href="transformations.html#cb53-5" aria-hidden="true" tabindex="-1"></a>        fun_ymax<span class="op">=</span>np.<span class="bu">max</span>,</span>
+<span id="cb53-6"><a href="transformations.html#cb53-6" aria-hidden="true" tabindex="-1"></a>        fun_y<span class="op">=</span>np.median</span>
+<span id="cb53-7"><a href="transformations.html#cb53-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-56-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>plotnine provides over 20 stats for you to use. Each stat is a function, so you can get help in the usual way, e.g. <code>?stat_bin</code>. To see a complete list of stats, try the ggplot2 cheatsheet.</p>
+<div id="exercises-4" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>What is the default geom associated with <code>stat_summary()</code>? How could
+you rewrite the previous plot to use that geom function instead of the
+stat function?</p></li>
+<li><p>What does <code>geom_col()</code> do? How is it different to <code>geom_bar()</code>?</p></li>
+<li><p>Most geoms and stats come in pairs that are almost always used in
+concert. Read through the documentation and make a list of all the
+pairs. What do they have in common?</p></li>
+<li><p>What variables does <code>stat_smooth()</code> compute? What parameters control
+its behaviour?</p></li>
+<li><p>In our proportion bar chart, we need to set <code>group=1</code>. Why? In other
+words what is the problem with these two graphs?</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="transformations.html#cb54-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb54-2"><a href="transformations.html#cb54-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, y<span class="op">=</span><span class="st">&quot;..prop..&quot;</span>))</span>
+<span id="cb54-3"><a href="transformations.html#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="transformations.html#cb54-4" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb54-5"><a href="transformations.html#cb54-5" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;color&quot;</span>, y<span class="op">=</span><span class="st">&quot;..prop..&quot;</span>))</span></code></pre></div></li>
+<li><p>What is the default geom associated with <code>stat_summary()</code>? How could
+you rewrite the previous plot to use that geom function instead of the
+stat function?</p></li>
+<li><p>What does <code>geom_col()</code> do? How is it different to <code>geom_bar()</code>?</p></li>
+<li><p>Most geoms and stats come in pairs that are almost always used in
+concert. Read through the documentation and make a list of all the
+pairs. What do they have in common?</p></li>
+<li><p>What variables does <code>stat_smooth()</code> compute? What parameters control
+its behaviour?</p></li>
+<li><p>In our proportion bar chart, we need to set <code>group=1</code>. Why? In other
+words what is the problem with these two graphs?</p>
+<pre><code>ggplot(data=diamonds) +\
+geom_bar(mapping=aes(x=&quot;cut&quot;, y=&quot;..prop..&quot;))
+
+ggplot(data=diamonds) +\
+geom_bar(mapping=aes(x=&quot;cut&quot;, fill=&quot;color&quot;, y=&quot;..prop..&quot;))</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="position-adjustments" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Position adjustments</h2>
+<p>There’s one more piece of magic associated with bar charts. You can colour a bar chart using either the <code>colour</code> aesthetic, or, more usefully, <code>fill</code>:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="transformations.html#cb56-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb56-2"><a href="transformations.html#cb56-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, colour<span class="op">=</span><span class="st">&quot;cut&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-58-1.png" width="702" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="transformations.html#cb57-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb57-2"><a href="transformations.html#cb57-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;cut&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-59-1.png" width="702" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Note what happens if you map the fill aesthetic to another variable, like <code>clarity</code>: the bars are automatically stacked. Each colored rectangle represents a combination of <code>cut</code> and <code>clarity</code>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="transformations.html#cb58-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb58-2"><a href="transformations.html#cb58-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;clarity&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-60-1.png" width="669" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>The stacking is performed automatically by the <strong>position adjustment</strong> specified by the <code>position</code> argument. If you don’t want a stacked bar chart, you can use one of three other options: <code>"identity"</code>, <code>"dodge"</code> or <code>"fill"</code>.</p>
+<ul>
+<li><code>position="identity"</code> will place each object exactly where it falls in
+the context of the graph. This is not very useful for bars, because it
+overlaps them. To see that overlapping we either need to make the bars
+slightly transparent by setting <code>alpha</code> to a small value, or completely
+transparent by setting <code>fill=None</code>.</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb59-1"><a href="transformations.html#cb59-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;clarity&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb59-2"><a href="transformations.html#cb59-2" aria-hidden="true" tabindex="-1"></a>geom_bar(alpha<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>, position<span class="op">=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-61-1.png" width="660" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb60-1"><a href="transformations.html#cb60-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, colour<span class="op">=</span><span class="st">&quot;clarity&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb60-2"><a href="transformations.html#cb60-2" aria-hidden="true" tabindex="-1"></a>geom_bar(fill<span class="op">=</span><span class="va">None</span>, position<span class="op">=</span><span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-62-1.png" width="660" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<ul>
+<li><p>The identity <code>position</code> adjustment is more useful for 2d geoms, like points,
+where it is the default.</p></li>
+<li><p><code>position="fill"</code> works like stacking, but makes each set of stacked bars
+the same height. This makes it easier to compare proportions across
+groups.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb61-1"><a href="transformations.html#cb61-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb61-2"><a href="transformations.html#cb61-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;clarity&quot;</span>), position<span class="op">=</span><span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-63-1.png" width="656" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p></li>
+<li><p><code>position="dodge"</code> places overlapping objects directly <em>beside</em> one
+another. This makes it easier to compare individual values.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="transformations.html#cb62-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>diamonds) <span class="op">+\</span></span>
+<span id="cb62-2"><a href="transformations.html#cb62-2" aria-hidden="true" tabindex="-1"></a>geom_bar(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cut&quot;</span>, fill<span class="op">=</span><span class="st">&quot;clarity&quot;</span>), position<span class="op">=</span><span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-64-1.png" width="660" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p></li>
+</ul>
+<p>There’s one other type of adjustment that’s not useful for bar charts, but it can be very useful for scatterplots. Recall our first scatterplot. Did you notice that the plot displays only 126 points, even though there are 234 observations in the dataset?</p>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-65-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>The values of <code>hwy</code> and <code>displ</code> are rounded so the points appear on a grid and many points overlap each other. This problem is known as <strong>overplotting</strong>. This arrangement makes it hard to see where the mass of the data is. Are the data points spread equally throughout the graph, or is there one special combination of <code>hwy</code> and <code>displ</code> that contains 109 values?</p>
+<p>You can avoid this gridding by setting the position adjustment to “jitter.” <code>position="jitter"</code> adds a small amount of random noise to each point. This spreads the points out because no two points are likely to receive the same amount of random noise.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb63-1"><a href="transformations.html#cb63-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg) <span class="op">+\</span></span>
+<span id="cb63-2"><a href="transformations.html#cb63-2" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;displ&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>), position<span class="op">=</span><span class="st">&quot;jitter&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-66-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Adding randomness seems like a strange way to improve your plot, but while it makes your graph less accurate at small scales, it makes your graph <em>more</em> revealing at large scales. Because this is such a useful operation, plotnine comes with a shorthand for <code>geom_point(position="jitter")</code>: <code>geom_jitter()</code>.</p>
+<p>To learn more about a position adjustment, look up the help page associated with each adjustment: <code>?position_dodge</code>, <code>?position_fill</code>, <code>?position_identity</code>, <code>?position_jitter</code>, and <code>?position_stack</code>.</p>
+<div id="exercises-5" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>What is the problem with this plot? How could you improve it?</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="transformations.html#cb64-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cty&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb64-2"><a href="transformations.html#cb64-2" aria-hidden="true" tabindex="-1"></a>geom_point()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-67-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p></li>
+<li><p>What parameters to <code>geom_jitter()</code> control the amount of jittering?</p></li>
+<li><p>Compare and contrast <code>geom_jitter()</code> with <code>geom_count()</code>.</p></li>
+<li><p>What’s the default position adjustment for <code>geom_boxplot()</code>? Create a visualisation of the <code>mpg</code> dataset that demonstrates it.</p></li>
+</ol>
+</div>
+</div>
+<div id="coordinate-systems" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Coordinate systems</h2>
+<p>Coordinate systems are probably the most complicated part of plotnine. The default coordinate system is the Cartesian coordinate system where the x and y positions act independently to determine the location of each point. There is one other coordinate system that is occasionally helpful.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<ul>
+<li><code>coord_flip()</code> switches the x and y axes. This is useful (for example), if you want horizontal boxplots. It’s also useful for long labels: it’s hard to get them to fit without overlapping on the x-axis.</li>
+</ul>
+<div class="sourceCode" id="cb65"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb65-1"><a href="transformations.html#cb65-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;class&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb65-2"><a href="transformations.html#cb65-2" aria-hidden="true" tabindex="-1"></a>geom_boxplot()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-68-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb66-1"><a href="transformations.html#cb66-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;class&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb66-2"><a href="transformations.html#cb66-2" aria-hidden="true" tabindex="-1"></a>geom_boxplot() <span class="op">+\</span></span>
+<span id="cb66-3"><a href="transformations.html#cb66-3" aria-hidden="true" tabindex="-1"></a>coord_flip()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-69-1.png" width="603" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div id="exercises-6" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>What does <code>labs()</code> do? Read the documentation.</p></li>
+<li><p>What does the plot below tell you about the relationship between city and highway mpg? Why is <code>coord_fixed()</code> important? What does <code>geom_abline()</code> do?</p></li>
+</ol>
+<div class="sourceCode" id="cb67"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb67-1"><a href="transformations.html#cb67-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;cty&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb67-2"><a href="transformations.html#cb67-2" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb67-3"><a href="transformations.html#cb67-3" aria-hidden="true" tabindex="-1"></a>geom_abline() <span class="op">+\</span></span>
+<span id="cb67-4"><a href="transformations.html#cb67-4" aria-hidden="true" tabindex="-1"></a>coord_fixed()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-70-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="the-layered-grammar-of-graphics" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> The layered grammar of graphics</h2>
+<p>In the previous sections, you learned much more than how to make scatterplots, bar charts, and boxplots. You learned a foundation that you can use to make <em>any</em> type of plot with plotnine. To see this, let’s add position adjustments, stats, coordinate systems, and faceting to our code template:</p>
+<pre><code>ggplot(data=&lt;DATA&gt;) +\
+&lt;GEOM_FUNCTION&gt;(
+   mapping=aes(&lt;MAPPINGS&gt;),
+   stat=&lt;STAT&gt;,
+   position=&lt;POSITION&gt;
+) +\
+&lt;COORDINATE_FUNCTION&gt; +\
+&lt;FACET_FUNCTION&gt;</code></pre>
+<p>Our new template takes seven parameters, the bracketed words that appear in the template. In practice, you rarely need to supply all seven parameters to make a graph because plotnine will provide useful defaults for everything except the data, the mappings, and the geom function.</p>
+<p>The seven parameters in the template compose the grammar of graphics, a formal system for building plots. The grammar of graphics is based on the insight that you can uniquely describe <em>any</em> plot as a combination of a dataset, a geom, a set of mappings, a stat, a position adjustment, a coordinate system, and a faceting scheme.</p>
+<p>To see how this works, consider how you could build a basic plot from scratch: you could start with a dataset and then transform it into the information that you want to display (with a stat).</p>
+<p><img src="images/visualization-grammar-1.png" width="100%" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Next, you could choose a geometric object to represent each observation in the transformed data. You could then use the aesthetic properties of the geoms to represent variables in the data. You would map the values of each variable to the levels of an aesthetic.</p>
+<p><img src="images/visualization-grammar-2.png" width="110%" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>You’d then select a coordinate system to place the geoms into. You’d use the location of the objects (which is itself an aesthetic property) to display the values of the x and y variables. At that point, you would have a complete graph, but you could further adjust the positions of the geoms within the coordinate system (a position adjustment) or split the graph into subplots (faceting). You could also extend the plot by adding one or more additional layers, where each additional layer uses a dataset, a geom, a set of mappings, a stat, and a position adjustment.</p>
+<p><img src="images/visualization-grammar-3.png" width="100%" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>You could use this method to build <em>any</em> plot that you imagine. In other words, you can use the code template that you’ve learned in this chapter to build hundreds of thousands of unique plots.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="7">
+<li id="fn7"><p>ggplot2 also has <code>coord_quickmap()</code> for producing maps with the correct aspect ratio and <code>coord_polar()</code> for using polar coordinates. plotnine doesn’t yet have these two functions.<a href="transformations.html#fnref7" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="aesthetics-and-geometry.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="scales-and-zooming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["plotnine.pdf", "plotnine.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

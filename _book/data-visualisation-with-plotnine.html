@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Ch. 2 Data visualisation with plotnine | Data Visualization with PlotNine</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Ch. 2 Data visualisation with plotnine | Data Visualization with PlotNine" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ch. 2 Data visualisation with plotnine | Data Visualization with PlotNine" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Jeroen Janssens" />
+
+
+<meta name="date" content="2020-10-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="aesthetics-and-geometry.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Visualization with PlotNine</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html"><i class="fa fa-check"></i><b>2</b> Data visualisation with <code>plotnine</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#prerequisites"><i class="fa fa-check"></i><b>2.1.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#first-steps"><i class="fa fa-check"></i><b>2.2</b> First steps</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#the-mpg-dataframe"><i class="fa fa-check"></i><b>2.2.1</b> The <code>mpg</code> DataFrame</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#creating-a-ggplot"><i class="fa fa-check"></i><b>2.2.2</b> Creating a ggplot</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#a-graphing-template"><i class="fa fa-check"></i><b>2.2.3</b> A graphing template</a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#exercises"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html"><i class="fa fa-check"></i><b>3</b> Aesthetics and Geometry</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#aesthetic-mappings"><i class="fa fa-check"></i><b>3.1</b> Aesthetic mappings</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-1"><i class="fa fa-check"></i><b>3.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#common-problems"><i class="fa fa-check"></i><b>3.2</b> Common problems</a></li>
+<li class="chapter" data-level="3.3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#facets"><i class="fa fa-check"></i><b>3.3</b> Facets</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-2"><i class="fa fa-check"></i><b>3.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#geometric-objects"><i class="fa fa-check"></i><b>3.4</b> Geometric objects</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-3"><i class="fa fa-check"></i><b>3.4.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>4</b> Transformations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="transformations.html"><a href="transformations.html#statistical-transformations"><i class="fa fa-check"></i><b>4.1</b> Statistical transformations</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="transformations.html"><a href="transformations.html#exercises-4"><i class="fa fa-check"></i><b>4.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="transformations.html"><a href="transformations.html#position-adjustments"><i class="fa fa-check"></i><b>4.2</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="transformations.html"><a href="transformations.html#exercises-5"><i class="fa fa-check"></i><b>4.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="transformations.html"><a href="transformations.html#coordinate-systems"><i class="fa fa-check"></i><b>4.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="transformations.html"><a href="transformations.html#exercises-6"><i class="fa fa-check"></i><b>4.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="transformations.html"><a href="transformations.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>4.4</b> The layered grammar of graphics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html"><i class="fa fa-check"></i><b>5</b> Scales and Zooming</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#scales"><i class="fa fa-check"></i><b>5.1</b> Scales</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#axis-ticks-and-legend-keys"><i class="fa fa-check"></i><b>5.1.1</b> Axis ticks and legend keys</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#legend-layout"><i class="fa fa-check"></i><b>5.1.2</b> Legend layout</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#replacing-a-scale"><i class="fa fa-check"></i><b>5.1.3</b> Replacing a scale</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#exercises-7"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#zooming"><i class="fa fa-check"></i><b>5.2</b> Zooming</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html"><i class="fa fa-check"></i><b>6</b> Graphics for communication</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#labels"><i class="fa fa-check"></i><b>6.2</b> Labels</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-8"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#annotations"><i class="fa fa-check"></i><b>6.3</b> Annotations</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-9"><i class="fa fa-check"></i><b>6.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#themes"><i class="fa fa-check"></i><b>6.4</b> Themes</a></li>
+<li class="chapter" data-level="6.5" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#saving-your-plots"><i class="fa fa-check"></i><b>6.5</b> Saving your plots</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#figure-sizing"><i class="fa fa-check"></i><b>6.5.1</b> Figure sizing</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://datascienceworkshops.com/blog/plotnine-grammar-of-graphics-for-python/" target="blank">Original article by Jeroen Janssens</a></li>
+<li><a href="https://github.com/f0nzie/rmarkdown-python-plotnine/" target="blank">This book repo by Alfonso R. Reyes</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization with PlotNine</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualisation-with-plotnine" class="section level1" number="2">
+<h1><span class="header-section-number">Ch. 2</span> Data visualisation with <code>plotnine</code></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-visualisation-with-plotnine.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
+<span id="cb1-2"><a href="data-visualisation-with-plotnine.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_virtualenv</span>(<span class="st">&quot;./pyenv&quot;</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="data-visualisation-with-plotnine.html#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.show =</span> <span class="st">&quot;hold&quot;</span>,</span>
+<span id="cb1-4"><a href="data-visualisation-with-plotnine.html#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb1-5"><a href="data-visualisation-with-plotnine.html#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">out.extra =</span> <span class="st">&quot;class=</span><span class="sc">\&quot;</span><span class="st">md:w-3/4 lg:w-2/3</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
+<span id="cb1-6"><a href="data-visualisation-with-plotnine.html#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb1-7"><a href="data-visualisation-with-plotnine.html#cb1-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">comment =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="data-visualisation-with-plotnine.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-2"><a href="data-visualisation-with-plotnine.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine.data <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-3"><a href="data-visualisation-with-plotnine.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="data-visualisation-with-plotnine.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-5"><a href="data-visualisation-with-plotnine.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="data-visualisation-with-plotnine.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb3-2"><a href="data-visualisation-with-plotnine.html#cb3-2" aria-hidden="true" tabindex="-1"></a>pd.set_option(<span class="st">&quot;display.max_rows&quot;</span>, <span class="dv">10</span>)</span>
+<span id="cb3-3"><a href="data-visualisation-with-plotnine.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="data-visualisation-with-plotnine.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rcParams</span>
+<span id="cb3-5"><a href="data-visualisation-with-plotnine.html#cb3-5" aria-hidden="true" tabindex="-1"></a>rcParams.update({<span class="st">&quot;figure.max_open_warning&quot;</span>: <span class="dv">0</span>,</span>
+<span id="cb3-6"><a href="data-visualisation-with-plotnine.html#cb3-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&quot;savefig.bbox&quot;</span>: <span class="st">&quot;tight&quot;</span>})</span>
+<span id="cb3-7"><a href="data-visualisation-with-plotnine.html#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="data-visualisation-with-plotnine.html#cb3-8" aria-hidden="true" tabindex="-1"></a>theme_set(theme_gray(base_size<span class="op">=</span><span class="dv">12</span>))</span></code></pre></div>
+<p>The <code>mpg</code> dataset:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="data-visualisation-with-plotnine.html#cb4-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
+<pre><code>    manufacturer   model  displ  year  cyl       trans drv  cty  hwy fl    class
+0           audi      a4    1.8  1999    4    auto(l5)   f   18   29  p  compact
+1           audi      a4    1.8  1999    4  manual(m5)   f   21   29  p  compact
+2           audi      a4    2.0  2008    4  manual(m6)   f   20   31  p  compact
+3           audi      a4    2.0  2008    4    auto(av)   f   21   30  p  compact
+4           audi      a4    2.8  1999    6    auto(l5)   f   16   26  p  compact
+..           ...     ...    ...   ...  ...         ...  ..  ...  ... ..      ...
+229   volkswagen  passat    2.0  2008    4    auto(s6)   f   19   28  p  midsize
+230   volkswagen  passat    2.0  2008    4  manual(m6)   f   21   29  p  midsize
+231   volkswagen  passat    2.8  1999    6    auto(l5)   f   16   26  p  midsize
+232   volkswagen  passat    2.8  1999    6  manual(m5)   f   18   26  p  midsize
+233   volkswagen  passat    3.6  2008    6    auto(s6)   f   17   26  p  midsize
+
+[234 rows x 11 columns]</code></pre>
+<p>Plotting couple of variables:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="data-visualisation-with-plotnine.html#cb6-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg) <span class="op">+\</span></span>
+<span id="cb6-2"><a href="data-visualisation-with-plotnine.html#cb6-2" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;displ&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-7-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>With some dots in red:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="data-visualisation-with-plotnine.html#cb7-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg, mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;displ&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb7-2"><a href="data-visualisation-with-plotnine.html#cb7-2" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb7-3"><a href="data-visualisation-with-plotnine.html#cb7-3" aria-hidden="true" tabindex="-1"></a>geom_point(data<span class="op">=</span>mpg.query(<span class="st">&quot;displ &gt; 5 &amp; hwy &gt; 20&quot;</span>), colour<span class="op">=</span><span class="st">&quot;red&quot;</span>, size<span class="op">=</span><span class="fl">2.2</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-8-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Markers:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="data-visualisation-with-plotnine.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> no_labels(x) :</span>
+<span id="cb8-2"><a href="data-visualisation-with-plotnine.html#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [<span class="st">&quot;&quot;</span>] <span class="op">*</span> <span class="bu">len</span>(x)</span>
+<span id="cb8-3"><a href="data-visualisation-with-plotnine.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-4"><a href="data-visualisation-with-plotnine.html#cb8-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&quot;x&quot;</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>],</span>
+<span id="cb8-5"><a href="data-visualisation-with-plotnine.html#cb8-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;y&quot;</span>: [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>],</span>
+<span id="cb8-6"><a href="data-visualisation-with-plotnine.html#cb8-6" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;size&quot;</span>: [<span class="dv">20</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">20</span>],</span>
+<span id="cb8-7"><a href="data-visualisation-with-plotnine.html#cb8-7" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;shape&quot;</span>: [<span class="st">&quot;o&quot;</span>, <span class="st">&quot;o&quot;</span>, <span class="st">&quot;^&quot;</span>, <span class="st">&quot;o&quot;</span>],</span>
+<span id="cb8-8"><a href="data-visualisation-with-plotnine.html#cb8-8" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;color&quot;</span>: [<span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;blue&quot;</span>]})</span>
+<span id="cb8-9"><a href="data-visualisation-with-plotnine.html#cb8-9" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>, size<span class="op">=</span><span class="st">&quot;size&quot;</span>, shape<span class="op">=</span><span class="st">&quot;shape&quot;</span>, color<span class="op">=</span><span class="st">&quot;color&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb8-10"><a href="data-visualisation-with-plotnine.html#cb8-10" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb8-11"><a href="data-visualisation-with-plotnine.html#cb8-11" aria-hidden="true" tabindex="-1"></a>scale_x_continuous(limits<span class="op">=</span>(<span class="fl">0.5</span>, <span class="fl">4.5</span>), labels<span class="op">=</span>no_labels) <span class="op">+\</span></span>
+<span id="cb8-12"><a href="data-visualisation-with-plotnine.html#cb8-12" aria-hidden="true" tabindex="-1"></a>scale_y_continuous(limits<span class="op">=</span>(<span class="fl">0.9</span>, <span class="fl">1.1</span>), labels<span class="op">=</span>no_labels) <span class="op">+\</span></span>
+<span id="cb8-13"><a href="data-visualisation-with-plotnine.html#cb8-13" aria-hidden="true" tabindex="-1"></a>scale_size_identity() <span class="op">+\</span></span>
+<span id="cb8-14"><a href="data-visualisation-with-plotnine.html#cb8-14" aria-hidden="true" tabindex="-1"></a>scale_shape_identity() <span class="op">+\</span></span>
+<span id="cb8-15"><a href="data-visualisation-with-plotnine.html#cb8-15" aria-hidden="true" tabindex="-1"></a>scale_color_identity() <span class="op">+\</span></span>
+<span id="cb8-16"><a href="data-visualisation-with-plotnine.html#cb8-16" aria-hidden="true" tabindex="-1"></a>labs(x<span class="op">=</span><span class="va">None</span>, y<span class="op">=</span><span class="va">None</span>) <span class="op">+\</span></span>
+<span id="cb8-17"><a href="data-visualisation-with-plotnine.html#cb8-17" aria-hidden="true" tabindex="-1"></a>theme(aspect_ratio<span class="op">=</span><span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-9-1.png" width="495" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div id="introduction" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<blockquote>
+<p>“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey</p>
+</blockquote>
+<p>This tutorial will teach you how to visualise your data using plotnine. Python has many packages for making graphs, but plotnine is one of the most elegant and most versatile. plotnine implements the <strong>grammar of graphics</strong>, a coherent system for describing and building graphs. With plotnine, you can do more faster by learning one system and applying it in many places.</p>
+<p>If you’d like to learn more about the theoretical underpinnings of plotnine before you start, I’d recommend reading <a href="http://vita.had.co.nz/papers/layered-grammar.pdf">The Layered Grammar of Graphics</a>.</p>
+<div id="prerequisites" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Prerequisites</h3>
+<p>This tutorial focusses on plotnine. We’ll also use a little numpy and pandas for data manipulation. To access the datasets, help pages, and functions that we will use in this tutorial, import<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> the necessary packages by running this code:</p>
+<p>If you run this code and get the error message <code>ModuleNotFoundError: No module named 'plotnine'</code>, you’ll need to first install it<a href="This%20tutorial%20was%20compiled%20with%20a%20%5Bfork%20from%20version%200.6.0%5D(https://github.com/jeroenjanssens/plotnine)%20that%20fixes%20an%20%5Bissue%5D(https://github.com/has2k1/plotnine/pull/325)%20related%20to%20using%20%60ha%60%20and%20%60va%60%20in%20%60aes()%60.">^</a>, then run the code once again.</p>
+<pre><code>! pip install plotnine[all]</code></pre>
+<p>You only need to install a package once, but you need to import it every time you run your script or (re)start the kernel.</p>
+</div>
+</div>
+<div id="first-steps" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> First steps</h2>
+<p>Let’s use our first graph to answer a question: Do cars with big engines use more fuel than cars with small engines? You probably already have an answer, but try to make your answer precise. What does the relationship between engine size and fuel efficiency look like? Is it positive? Negative? Linear? Nonlinear?</p>
+<div id="the-mpg-dataframe" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> The <code>mpg</code> DataFrame</h3>
+<p>You can test your answer with the <code>mpg</code> DataFrame found in <code>plotnine.data</code>. A DataFrame is a rectangular collection of variables (in the columns) and observations (in the rows). <code>mpg</code> contains observations collected by the US Environmental Protection Agency on 38 models of car.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="data-visualisation-with-plotnine.html#cb10-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
+<pre><code>    manufacturer   model  displ  year  cyl       trans drv  cty  hwy fl    class
+0           audi      a4    1.8  1999    4    auto(l5)   f   18   29  p  compact
+1           audi      a4    1.8  1999    4  manual(m5)   f   21   29  p  compact
+2           audi      a4    2.0  2008    4  manual(m6)   f   20   31  p  compact
+3           audi      a4    2.0  2008    4    auto(av)   f   21   30  p  compact
+4           audi      a4    2.8  1999    6    auto(l5)   f   16   26  p  compact
+..           ...     ...    ...   ...  ...         ...  ..  ...  ... ..      ...
+229   volkswagen  passat    2.0  2008    4    auto(s6)   f   19   28  p  midsize
+230   volkswagen  passat    2.0  2008    4  manual(m6)   f   21   29  p  midsize
+231   volkswagen  passat    2.8  1999    6    auto(l5)   f   16   26  p  midsize
+232   volkswagen  passat    2.8  1999    6  manual(m5)   f   18   26  p  midsize
+233   volkswagen  passat    3.6  2008    6    auto(s6)   f   17   26  p  midsize
+
+[234 rows x 11 columns]</code></pre>
+<p>Among the variables in <code>mpg</code> are:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>displ</code>, a car’s engine size, in litres.</p></li>
+<li><p><code>hwy</code>, a car’s fuel efficiency on the highway, in miles per gallon (mpg). A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.</p></li>
+</ol>
+<p>To learn more about <code>mpg</code>, open its help page by running <code>?mpg</code>.</p>
+</div>
+<div id="creating-a-ggplot" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Creating a ggplot</h3>
+<p>To plot <code>mpg</code>, run this code<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> to put <code>displ</code> on the x-axis and <code>hwy</code> on the y-axis:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="data-visualisation-with-plotnine.html#cb12-1" aria-hidden="true" tabindex="-1"></a>ggplot(data<span class="op">=</span>mpg) <span class="op">+\</span></span>
+<span id="cb12-2"><a href="data-visualisation-with-plotnine.html#cb12-2" aria-hidden="true" tabindex="-1"></a>geom_point(mapping<span class="op">=</span>aes(x<span class="op">=</span><span class="st">&quot;displ&quot;</span>, y<span class="op">=</span><span class="st">&quot;hwy&quot;</span>))</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-11-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>The plot shows a negative relationship between engine size (<code>displ</code>) and fuel efficiency (<code>hwy</code>). In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?</p>
+<p>With plotnine, you begin a plot with the function <code>ggplot()</code>. <code>ggplot()</code> creates a coordinate system that you can add layers to. The first argument of <code>ggplot()</code> is the dataset to use in the graph. So <code>ggplot(data=mpg)</code> creates an empty graph, but it’s not very interesting so I’m not going to show it here.</p>
+<p>You complete your graph by adding one or more layers to <code>ggplot()</code>. The function <code>geom_point()</code> adds a layer of points to your plot, which creates a scatterplot. plotnine comes with many geom functions that each add a different type of layer to a plot. You’ll learn a whole bunch of them throughout this tutorial.</p>
+<p>Each geom function in plotnine takes a <code>mapping</code> argument. This defines how variables in your dataset are mapped to visual properties. The <code>mapping</code> argument is always paired with <code>aes()</code>, and the <code>x</code> and <code>y</code> arguments of <code>aes()</code> specify which variables to map to the x and y axes. plotnine looks for the mapped variables in the <code>data</code> argument, in this case, <code>mpg</code>.</p>
+</div>
+<div id="a-graphing-template" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> A graphing template</h3>
+<p>Let’s turn this code into a reusable template for making graphs with plotnine. To make a graph, replace the bracketed sections in the code below with a dataset, a geom function, or a collection of mappings.</p>
+<pre><code>ggplot(data=&lt;DATA&gt;) +\
+&lt;GEOM_FUNCTION&gt;(mapping=aes(&lt;MAPPINGS&gt;))</code></pre>
+<p>The rest of this tutorial will show you how to complete and extend this template to make different types of graphs. We will begin with the <code>&lt;MAPPINGS&gt;</code> component.</p>
+</div>
+<div id="exercises" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Run <code>ggplot(data=mpg)</code>. What do you see?</p></li>
+<li><p>How many rows are in <code>mpg</code>? How many columns?</p></li>
+<li><p>What does the <code>drv</code> variable describe? Read the help for <code>?mpg</code> to find out.</p></li>
+<li><p>Make a scatterplot of <code>hwy</code> vs <code>cyl</code>.</p></li>
+<li><p>What happens if you make a scatterplot of <code>class</code> vs <code>drv</code>? Why is the plot not useful?</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>While it’s generally considered to be bad practice to import everything into the global namespace, I think it’s fine to do this in an ad-hoc environment such as a notebook as it makes using the many functions plotnine provides more convenient. An additional advantage is that the resulting code more closely resembles the original ggplot2 code. Alternatively, it’s quite common to <code>import plotnine as p9</code> and prefix every function with <code>p9.</code><a href="data-visualisation-with-plotnine.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>If you dislike the continuation character <code>\</code> then an alternative syntax is to wrap the entire expression in parentheses so that it’s not needed.<a href="data-visualisation-with-plotnine.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="aesthetics-and-geometry.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["plotnine.pdf", "plotnine.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
