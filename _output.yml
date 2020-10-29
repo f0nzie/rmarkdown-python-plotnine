@@ -1,0 +1,20 @@
+bookdown::gitbook:
+  css: style.css
+  highlight: kate
+  config:
+    toc:
+      before: |
+        <li><a href="./">Data Visualization with PlotNine</a></li>
+      after: |
+        <li><a href="https://datascienceworkshops.com/blog/plotnine-grammar-of-graphics-for-python/" target="blank">Original article by Jeroen Janssens</a></li>
+        <li><a href="https://github.com/f0nzie/rmarkdown-python-plotnine/" target="blank">This book repo by Alfonso R. Reyes</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+    download: ["pdf", "epub"]
+    sharing: null
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+

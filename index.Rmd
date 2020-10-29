@@ -1,0 +1,70 @@
+---
+title: "Data Visualization with PlotNine"
+author: "Jeroen Janssens"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# Preface
+
+[plotnine](https://github.com/has2k1/plotnine) is a data visualisation package for Python based on the grammar of graphics, created by Hassan Kibirige.
+Its API is similar to [ggplot2](https://ggplot2.tidyverse.org/), a widely successful R package by [Hadley Wickham and others](https://ggplot2.tidyverse.org/authors.html).[^index-1]
+
+[^index-1]: There have been other attempts at porting ggplot2 to Python, such as [ggpy](https://github.com/yhat/ggpy), but as far as I know, these are no longer maintained.
+
+I'm a staunch proponent of ggplot2.
+The underlying grammar of graphics is accompanied by a consistent API that allows you to quickly and iteratively create different types of beautiful data visualisations while rarely having to consult the documentation.
+A welcoming set of properties when doing exploratory data analysis.
+
+I must admit that I haven't tried every data visualisation package there is for Python, but when it comes to the most popular ones, I personally find them either convenient but limited ([pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html)), flexible but complicated ([matplotlib](https://matplotlib.org/)), or beautiful but inconsistent ([seaborn](https://seaborn.pydata.org/)).
+Your mileage may vary.
+plotnine, on the other hand, shows a lot of promise.
+I estimate it currently has a 95% coverage of ggplot2's functionality, and it's still actively being developed.
+All in all, as someone who uses both R and Python, I'm very pleased to be able to transfer my ggplot2 knowledge to the Python ecosystem.
+
+I figured that plotnine could use a good tutorial so that perhaps more Pythonistas would give this package a shot.
+Instead of writing one from scratch, I turned to the, in my opinion, best free tutorial for ggplot2: [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham and Garrett Grolemund, published by O'Reilly Media in 2016.
+
+```{r, echo=FALSE, dev="png", out.extra="class=\"p-4 w-1/2 md:w-1/3 lg:w-1/4\""}
+knitr::include_graphics("images/cover.png")
+```
+
+
+All I had to do was translate^[If you ever need to translate ggplot2 to plotnine yourself, check out my [follow-up post containing heuristics](/blog/heuristics-for-translating-ggplot2-to-plotnine) for doing so.] the visualization chapters (chapter 3 and 28) from R and ggplot2 to Python and plotnine.
+I would like to thank Hadley, Garrett, and O'Reilly Media, for granting me permission to do so.
+Translating an existing text is quicker than writing a new one, and has the benefit that it becomes possible to compare both the syntax and coverage of plotnine to ggplot2.
+
+However, while quicker, translating is not always straightforward.
+I have tried to change as little as possible to the original text while making sure that the text and the code are still in sync.
+In case any errors or falsehoods have been introduced due to translation, then I'm the one to blame.
+For example, to the best of my knowledge, neither authors have made any claims about plotnine.
+If you find such an error and think it is fixable, then it would be greatly appreciated if you'd let me know by [creating an issue on Github](https://github.com/datascienceworkshops/r4ds-python-plotnine/issues).
+Thank you.
+The section numbers in this tutorial link back to the corresponding section of the original text, in case you want to compare them.^[It's important to note that this tutorial is not meant to compare Python and R.
+The never-ending flame wars between these two languages are boring and unproductive.] Only this preface and the few footnotes scattered among the text are entirely mine.
+
+This tutorial is also available as a [Jupyter notebook](https://github.com/datascienceworkshops/r4ds-python-plotnine/blob/master/output/r4ds-python-plotnine.ipynb) and an [R notebook](https://github.com/datascienceworkshops/r4ds-python-plotnine/blob/master/output/r4ds-python-plotnine.Rmd) in case you want to follow along.
+If you clone the [Github repository](https://github.com/datascienceworkshops/r4ds-python-plotnine) then you can find the notebooks in the `output` directory.
+The [README](https://github.com/datascienceworkshops/r4ds-python-plotnine/blob/master/README.md) contains instructions on how to run the notebooks.
+The Jupyter notebook is also available on [Binder](https://mybinder.org/v2/gh/datascienceworkshops/r4ds-python-plotnine/master?filepath=output%2Fr4ds-python-plotnine.ipynb), but keep in mind that the interactive version may take a while to launch.
+
+Without further ado, let's start learning about plotnine!
+
+Cheers,
+
+Jeroen
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

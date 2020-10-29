@@ -1,0 +1,8 @@
+.Rproj.user
+_book
+_bookdown_files
+.ipynb_checkpoints
+pyenv
+.Rhistory
+figure/*
+

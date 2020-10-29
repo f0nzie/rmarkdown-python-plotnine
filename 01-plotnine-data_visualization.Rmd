@@ -1,0 +1,151 @@
+# Data visualisation with `plotnine`
+
+```{r, echo=TRUE}
+library(reticulate)
+use_virtualenv("./pyenv", required = TRUE)
+knitr::opts_chunk$set(fig.show = "hold",
+                      fig.align = "center",
+                      out.extra = "class=\"md:w-3/4 lg:w-2/3\"",
+                      dpi = 300,
+                      comment = "")
+```
+
+```{python }
+from plotnine import *
+from plotnine.data import *
+
+import numpy as np
+import pandas as pd
+```
+
+```{python, echo=TRUE}
+import warnings
+pd.set_option("display.max_rows", 10)
+
+from matplotlib import rcParams
+rcParams.update({"figure.max_open_warning": 0,
+                 "savefig.bbox": "tight"})
+
+theme_set(theme_gray(base_size=12))
+```
+
+The `mpg` dataset:
+
+```{python}
+mpg
+```
+
+Plotting couple of variables:
+
+```{python, echo=TRUE, results="hide"}
+ggplot(data=mpg) +\
+geom_point(mapping=aes(x="displ", y="hwy"))
+```
+
+With some dots in red:
+
+```{python, echo=TRUE, results="hide"}
+ggplot(data=mpg, mapping=aes(x="displ", y="hwy")) +\
+geom_point() +\
+geom_point(data=mpg.query("displ > 5 & hwy > 20"), colour="red", size=2.2)
+```
+
+Markers:
+
+```{python, echo=TRUE, results="hide"}
+def no_labels(x) :
+    return [""] * len(x)
+  
+df = pd.DataFrame({"x": [1, 2, 3, 4],
+                   "y": [1, 1, 1, 1],
+                   "size": [20, 10, 20, 20],
+                   "shape": ["o", "o", "^", "o"],
+                   "color": ["black", "black", "black", "blue"]})
+ggplot(df, aes("x", "y", size="size", shape="shape", color="color")) +\
+geom_point() +\
+scale_x_continuous(limits=(0.5, 4.5), labels=no_labels) +\
+scale_y_continuous(limits=(0.9, 1.1), labels=no_labels) +\
+scale_size_identity() +\
+scale_shape_identity() +\
+scale_color_identity() +\
+labs(x=None, y=None) +\
+theme(aspect_ratio=1/3)
+```
+
+## Introduction
+
+> "The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey
+
+This tutorial will teach you how to visualise your data using plotnine. Python has many packages for making graphs, but plotnine is one of the most elegant and most versatile. plotnine implements the **grammar of graphics**, a coherent system for describing and building graphs. With plotnine, you can do more faster by learning one system and applying it in many places.
+
+If you'd like to learn more about the theoretical underpinnings of plotnine before you start, I'd recommend reading [The Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.pdf).
+
+### Prerequisites
+
+This tutorial focusses on plotnine. We'll also use a little numpy and pandas for data manipulation. To access the datasets, help pages, and functions that we will use in this tutorial, import^[While it's generally considered to be bad practice to import everything into the global namespace, I think it's fine to do this in an ad-hoc environment such as a notebook as it makes using the many functions plotnine provides more convenient. An additional advantage is that the resulting code more closely resembles the original ggplot2 code. Alternatively, it's quite common to `import plotnine as p9` and prefix every function with `p9.`] the necessary packages by running this code:
+
+If you run this code and get the error message `ModuleNotFoundError: No module named 'plotnine'`, you'll need to first install it[\^](This tutorial was compiled with a [fork from version 0.6.0](https://github.com/jeroenjanssens/plotnine) that fixes an [issue](https://github.com/has2k1/plotnine/pull/325) related to using `ha` and `va` in `aes()`.), then run the code once again.
+
+    ! pip install plotnine[all]
+
+You only need to install a package once, but you need to import it every time you run your script or (re)start the kernel.
+
+## First steps
+
+Let's use our first graph to answer a question: Do cars with big engines use more fuel than cars with small engines? You probably already have an answer, but try to make your answer precise. What does the relationship between engine size and fuel efficiency look like? Is it positive? Negative? Linear? Nonlinear?
+
+### The `mpg` DataFrame
+
+You can test your answer with the `mpg` DataFrame found in `plotnine.data`. A DataFrame is a rectangular collection of variables (in the columns) and observations (in the rows). `mpg` contains observations collected by the US Environmental Protection Agency on 38 models of car.
+
+```{python}
+mpg
+```
+
+Among the variables in `mpg` are:
+
+1.  `displ`, a car's engine size, in litres.
+
+2.  `hwy`, a car's fuel efficiency on the highway, in miles per gallon (mpg). A car with a low fuel efficiency consumes more fuel than a car with a high fuel efficiency when they travel the same distance.
+
+To learn more about `mpg`, open its help page by running `?mpg`.
+
+### Creating a ggplot
+
+To plot `mpg`, run this code[^plotnine-data_visualization-1] to put `displ` on the x-axis and `hwy` on the y-axis:
+
+[^plotnine-data_visualization-1]: If you dislike the continuation character `\` then an alternative syntax is to wrap the entire expression in parentheses so that it's not needed.
+
+```{python, results="hide"}
+ggplot(data=mpg) +\
+geom_point(mapping=aes(x="displ", y="hwy"))
+```
+
+The plot shows a negative relationship between engine size (`displ`) and fuel efficiency (`hwy`). In other words, cars with big engines use more fuel. Does this confirm or refute your hypothesis about fuel efficiency and engine size?
+
+With plotnine, you begin a plot with the function `ggplot()`. `ggplot()` creates a coordinate system that you can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data=mpg)` creates an empty graph, but it's not very interesting so I'm not going to show it here.
+
+You complete your graph by adding one or more layers to `ggplot()`. The function `geom_point()` adds a layer of points to your plot, which creates a scatterplot. plotnine comes with many geom functions that each add a different type of layer to a plot. You'll learn a whole bunch of them throughout this tutorial.
+
+Each geom function in plotnine takes a `mapping` argument. This defines how variables in your dataset are mapped to visual properties. The `mapping` argument is always paired with `aes()`, and the `x` and `y` arguments of `aes()` specify which variables to map to the x and y axes. plotnine looks for the mapped variables in the `data` argument, in this case, `mpg`.
+
+### A graphing template
+
+Let's turn this code into a reusable template for making graphs with plotnine. To make a graph, replace the bracketed sections in the code below with a dataset, a geom function, or a collection of mappings.
+
+    ggplot(data=<DATA>) +\
+    <GEOM_FUNCTION>(mapping=aes(<MAPPINGS>))
+
+The rest of this tutorial will show you how to complete and extend this template to make different types of graphs. We will begin with the `<MAPPINGS>` component.
+
+### Exercises
+
+1.  Run `ggplot(data=mpg)`. What do you see?
+
+2.  How many rows are in `mpg`? How many columns?
+
+3.  What does the `drv` variable describe? Read the help for `?mpg` to find out.
+
+4.  Make a scatterplot of `hwy` vs `cyl`.
+
+5.  What happens if you make a scatterplot of `class` vs `drv`? Why is the plot not useful?
