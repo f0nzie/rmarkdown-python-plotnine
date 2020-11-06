@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  
+  <meta name="github-repo" content="/f0nzie/rmarkdown-python-plotnine" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ch. 4 Transformations | Data Visualization with PlotNine" />
@@ -237,7 +237,7 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="transformations" class="section level1" number="4">
 <h1><span class="header-section-number">Ch. 4</span> Transformations</h1>
-<p><em>Last update: Wed Oct 28 23:55:04 2020 -0500 (abfa111)</em></p>
+<p><em>Last update: Fri Nov 6 11:33:28 2020 -0600 (420d787)</em></p>
 <div id="statistical-transformations" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Statistical transformations</h2>
 <p>Next, let’s take a look at a bar chart. Bar charts seem simple, but they are interesting because they reveal something subtle about plots. Consider a basic bar chart, as drawn with <code>geom_bar()</code>. The following chart displays the total number of diamonds in the <code>diamonds</code> dataset, grouped by <code>cut</code>. The <code>diamonds</code> dataset comes in plotnine and contains information about ~54,000 diamonds, including the <code>price</code>, <code>carat</code>, <code>color</code>, <code>clarity</code>, and <code>cut</code> of each diamond. The chart shows that more diamonds are available with high quality cuts than with low quality cuts.</p>
@@ -508,7 +508,16 @@ another. This makes it easier to compare individual values.</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": null,
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
 "fontsettings": {
 "theme": "white",
 "family": "sans",

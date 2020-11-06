@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  
+  <meta name="github-repo" content="/f0nzie/rmarkdown-python-plotnine" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Data Visualization with PlotNine" />
@@ -242,7 +242,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="preface" class="section level1" number="1">
 <h1><span class="header-section-number">Ch. 1</span> Preface</h1>
-<p><em>Last update: Wed Oct 28 23:55:04 2020 -0500 (abfa111)</em></p>
+<p><em>Last update: Fri Nov 6 12:52:07 2020 -0600 (a19ad66)</em></p>
 <p><a href="https://github.com/has2k1/plotnine">plotnine</a> is a data visualisation package for Python based on the grammar of graphics, created by Hassan Kibirige.
 Its API is similar to <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, a widely successful R package by <a href="https://ggplot2.tidyverse.org/authors.html">Hadley Wickham and others</a>.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>I’m a staunch proponent of ggplot2.
@@ -305,7 +305,16 @@ The never-ending flame wars between these two languages are boring and unproduct
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": null,
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
 "fontsettings": {
 "theme": "white",
 "family": "sans",
