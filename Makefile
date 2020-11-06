@@ -3,11 +3,13 @@ SHELL := /bin/bash
 BOOKDOWN_FILES_DIRS = plotnine_files _bookdown_files
 OUTPUT_DIR = .
 PUBLISH_BOOK_DIR = public
-PYTHON_ENV_DIR = pyenv
+PYTHON_ENV = pyenv
 START_NOTEBOOK = r4ds-python-plotnine.ipynb
 FIGURE_DIR = figure
 LIBRARY = renv/library
 CHECKPOINTS = .ipynb_checkpoints
+CONDA_TYPE = miniconda3
+ENV_RECIPE = requirements.txt
 # Detect operating system. Sort of tricky for Windows because of MSYS, cygwin, MGWIN
 OSFLAG :=
 ifeq ($(OS), Windows_NT)
@@ -26,18 +28,18 @@ endif
 # create virtualenv and start Jupyter with default notebook
 .PHONY: create_pyenv
 create_pyenv:
-	if [ -d ${PYTHON_ENV_DIR} ]; then rm -rf ${PYTHON_ENV_DIR};fi ;\
-	~/anaconda3/bin/conda config --set auto_activate_base false ;\
+	if [ -d ${PYTHON_ENV} ]; then rm -rf ${PYTHON_ENV};fi ;\
+	${HOME}/${CONDA_TYPE}/bin/conda config --set auto_activate_base false ;\
 	python --version ;\
 	# sudo apt-get install -y python3-venv ;\
 	# create environment
-	/usr/bin/python3 -m virtualenv pyenv --python=python3.7 ;\
-	source pyenv/bin/activate ;\
+	/usr/bin/python3 -m virtualenv ${PYTHON_ENV} --python=python3.7 ;\
+	source ${PYTHON_ENV}/bin/activate ;\
 	python -V ;\
 	pip install -U pip ;\
-	pip install -Ur requirements.txt ;\
+	pip install -Ur ${ENV_RECIPE} ;\
 	jupyter-notebook ${START_NOTEBOOK} ;\
-	~/anaconda3/bin/conda config --set auto_activate_base true ;\
+	${HOME}/${CONDA_TYPE}/bin/conda config --set auto_activate_base true ;\
 
 
 renv/library: renv.lock
