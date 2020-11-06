@@ -1,5 +1,6 @@
-book_filename: "plotnine"
 delete_merged_file: true
+output_dir: public
+book_filename: "plotnine"
 # new_session: true
 language:
   ui:

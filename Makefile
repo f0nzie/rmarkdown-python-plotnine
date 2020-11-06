@@ -2,13 +2,12 @@
 SHELL := /bin/bash
 BOOKDOWN_FILES_DIRS = plotnine_files _bookdown_files
 OUTPUT_DIR = .
-PUBLISH_BOOK_DIR = _book
+PUBLISH_BOOK_DIR = public
 PYTHON_ENV_DIR = pyenv
 START_NOTEBOOK = r4ds-python-plotnine.ipynb
 FIGURE_DIR = figure
 LIBRARY = renv/library
 CHECKPOINTS = .ipynb_checkpoints
-
 # Detect operating system. Sort of tricky for Windows because of MSYS, cygwin, MGWIN
 OSFLAG :=
 ifeq ($(OS), Windows_NT)
