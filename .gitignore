@@ -6,3 +6,7 @@ pyenv
 .Rhistory
 figure/*
 
+
+.ts/
+
+_book/
