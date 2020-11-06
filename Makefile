@@ -2,13 +2,14 @@
 SHELL := /bin/bash
 BOOKDOWN_FILES_DIRS = plotnine_files _bookdown_files
 OUTPUT_DIR = .
-PUBLISH_BOOK_DIR = _book
-PYTHON_ENV_DIR = pyenv
+PUBLISH_BOOK_DIR = public
+PYTHON_ENV = pyenv
 START_NOTEBOOK = r4ds-python-plotnine.ipynb
 FIGURE_DIR = figure
 LIBRARY = renv/library
 CHECKPOINTS = .ipynb_checkpoints
-
+CONDA_TYPE = miniconda3
+ENV_RECIPE = requirements.txt
 # Detect operating system. Sort of tricky for Windows because of MSYS, cygwin, MGWIN
 OSFLAG :=
 ifeq ($(OS), Windows_NT)
@@ -24,18 +25,21 @@ else
 endif
 
 
-.PHONY: pyenv
-pyenv:
-	if [ -d ${PYTHON_ENV_DIR} ]; then rm -rf ${PYTHON_ENV_DIR};fi ;\
-	~/anaconda3/bin/conda config --set auto_activate_base false ;\
+# create virtualenv and start Jupyter with default notebook
+.PHONY: create_pyenv
+create_pyenv:
+	if [ -d ${PYTHON_ENV} ]; then rm -rf ${PYTHON_ENV};fi ;\
+	${HOME}/${CONDA_TYPE}/bin/conda config --set auto_activate_base false ;\
 	python --version ;\
 	# sudo apt-get install -y python3-venv ;\
-	/usr/bin/python3 -m virtualenv pyenv --python=python3.7 ;\
-	source pyenv/bin/activate ;\
+	# create environment
+	/usr/bin/python3 -m virtualenv ${PYTHON_ENV} --python=python3.7 ;\
+	source ${PYTHON_ENV}/bin/activate ;\
 	python -V ;\
 	pip install -U pip ;\
-	pip install -Ur requirements.txt ;\
-	jupyter-notebook ${START_NOTEBOOK}
+	pip install -Ur ${ENV_RECIPE} ;\
+	jupyter-notebook ${START_NOTEBOOK} ;\
+	${HOME}/${CONDA_TYPE}/bin/conda config --set auto_activate_base true ;\
 
 
 renv/library: renv.lock
@@ -44,7 +48,7 @@ renv/library: renv.lock
 
 # knit the book and then open it in the browser
 .PHONY: gitbook1 gitbook2
-gitbook1: build_book1 open_book
+gitbook: build_book1 open_book
 
 gitbook2: build_book2 open_book
 
@@ -60,6 +64,11 @@ build_book2:
 	Rscript -e "\
 	Sys.setenv(RSTUDIO_PANDOC='/usr/lib/rstudio/bin/pandoc');\
 	bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
+
+# push main branch and github-pages
+push:
+	git push ;\
+	git subtree push --prefix public origin gh-pages	
 	
 
 open_book:
