@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Ch. 6 Graphics for communication | Data Visualization with PlotNine</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Ch. 6 Graphics for communication | Data Visualization with PlotNine" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ch. 6 Graphics for communication | Data Visualization with PlotNine" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Jeroen Janssens" />
+
+
+<meta name="date" content="2020-11-06" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="scales-and-zooming.html"/>
+
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Visualization with PlotNine</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preface</a></li>
+<li class="chapter" data-level="2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html"><i class="fa fa-check"></i><b>2</b> Data visualisation with <code>plotnine</code></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#prerequisites"><i class="fa fa-check"></i><b>2.1.1</b> Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#first-steps"><i class="fa fa-check"></i><b>2.2</b> First steps</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#the-mpg-dataframe"><i class="fa fa-check"></i><b>2.2.1</b> The <code>mpg</code> DataFrame</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#creating-a-ggplot"><i class="fa fa-check"></i><b>2.2.2</b> Creating a ggplot</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#a-graphing-template"><i class="fa fa-check"></i><b>2.2.3</b> A graphing template</a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-visualisation-with-plotnine.html"><a href="data-visualisation-with-plotnine.html#exercises"><i class="fa fa-check"></i><b>2.2.4</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html"><i class="fa fa-check"></i><b>3</b> Aesthetics and Geometry</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#aesthetic-mappings"><i class="fa fa-check"></i><b>3.1</b> Aesthetic mappings</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-1"><i class="fa fa-check"></i><b>3.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#common-problems"><i class="fa fa-check"></i><b>3.2</b> Common problems</a></li>
+<li class="chapter" data-level="3.3" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#facets"><i class="fa fa-check"></i><b>3.3</b> Facets</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-2"><i class="fa fa-check"></i><b>3.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#geometric-objects"><i class="fa fa-check"></i><b>3.4</b> Geometric objects</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="aesthetics-and-geometry.html"><a href="aesthetics-and-geometry.html#exercises-3"><i class="fa fa-check"></i><b>3.4.1</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="transformations.html"><a href="transformations.html"><i class="fa fa-check"></i><b>4</b> Transformations</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="transformations.html"><a href="transformations.html#statistical-transformations"><i class="fa fa-check"></i><b>4.1</b> Statistical transformations</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="transformations.html"><a href="transformations.html#exercises-4"><i class="fa fa-check"></i><b>4.1.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="transformations.html"><a href="transformations.html#position-adjustments"><i class="fa fa-check"></i><b>4.2</b> Position adjustments</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="transformations.html"><a href="transformations.html#exercises-5"><i class="fa fa-check"></i><b>4.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="transformations.html"><a href="transformations.html#coordinate-systems"><i class="fa fa-check"></i><b>4.3</b> Coordinate systems</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="transformations.html"><a href="transformations.html#exercises-6"><i class="fa fa-check"></i><b>4.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="transformations.html"><a href="transformations.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>4.4</b> The layered grammar of graphics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html"><i class="fa fa-check"></i><b>5</b> Scales and Zooming</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#scales"><i class="fa fa-check"></i><b>5.1</b> Scales</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#axis-ticks-and-legend-keys"><i class="fa fa-check"></i><b>5.1.1</b> Axis ticks and legend keys</a></li>
+<li class="chapter" data-level="5.1.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#legend-layout"><i class="fa fa-check"></i><b>5.1.2</b> Legend layout</a></li>
+<li class="chapter" data-level="5.1.3" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#replacing-a-scale"><i class="fa fa-check"></i><b>5.1.3</b> Replacing a scale</a></li>
+<li class="chapter" data-level="5.1.4" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#exercises-7"><i class="fa fa-check"></i><b>5.1.4</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="scales-and-zooming.html"><a href="scales-and-zooming.html#zooming"><i class="fa fa-check"></i><b>5.2</b> Zooming</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html"><i class="fa fa-check"></i><b>6</b> Graphics for communication</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#introduction-1"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#labels"><i class="fa fa-check"></i><b>6.2</b> Labels</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-8"><i class="fa fa-check"></i><b>6.2.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#annotations"><i class="fa fa-check"></i><b>6.3</b> Annotations</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#exercises-9"><i class="fa fa-check"></i><b>6.3.1</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#themes"><i class="fa fa-check"></i><b>6.4</b> Themes</a></li>
+<li class="chapter" data-level="6.5" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#saving-your-plots"><i class="fa fa-check"></i><b>6.5</b> Saving your plots</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="graphics-for-communication.html"><a href="graphics-for-communication.html#figure-sizing"><i class="fa fa-check"></i><b>6.5.1</b> Figure sizing</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://datascienceworkshops.com/blog/plotnine-grammar-of-graphics-for-python/" target="blank">Original article by Jeroen Janssens</a></li>
+<li><a href="https://github.com/f0nzie/rmarkdown-python-plotnine/" target="blank">This book repo by Alfonso R. Reyes</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization with PlotNine</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphics-for-communication" class="section level1" number="6">
+<h1><span class="header-section-number">Ch. 6</span> Graphics for communication</h1>
+<div id="introduction-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction</h2>
+<p>Now that you understand your data, you need to <em>communicate</em> your understanding to others. Your audience will likely not share your background knowledge and will not be deeply invested in the data. To help others quickly build up a good mental model of the data, you will need to invest considerable effort in making your plots as self-explanatory as possible. In this chapter, you’ll learn some of the tools that plotnine provides to do so.</p>
+<p>The rest of this tutorial focuses on the tools you need to create good graphics. I assume that you know what you want, and just need to know how to do it. For that reason, I highly recommend pairing this chapter with a good general visualisation book. I particularly like <a href="https://amzn.com/0321934075"><em>The Truthful Art</em></a>, by Albert Cairo. It doesn’t teach the mechanics of creating visualisations, but instead focuses on what you need to think about in order to create effective graphics.</p>
+</div>
+<div id="labels" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Labels</h2>
+<p>The easiest place to start when turning an exploratory graphic into an expository graphic is with good labels. You add labels with the <code>labs()</code> function. This example adds a plot title:</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb94-1"><a href="graphics-for-communication.html#cb94-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb94-2"><a href="graphics-for-communication.html#cb94-2" aria-hidden="true" tabindex="-1"></a>geom_point(aes(color<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb94-3"><a href="graphics-for-communication.html#cb94-3" aria-hidden="true" tabindex="-1"></a>geom_smooth(se<span class="op">=</span><span class="va">False</span>) <span class="op">+\</span></span>
+<span id="cb94-4"><a href="graphics-for-communication.html#cb94-4" aria-hidden="true" tabindex="-1"></a>labs(title<span class="op">=</span><span class="st">&quot;Fuel efficiency generally decreases with engine size&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-103-1.png" width="689" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>The purpose of a plot title is to summarise the main finding. Avoid titles that just describe what the plot is, e.g. “A scatterplot of engine displacement vs. fuel economy.”</p>
+<p>You can also use <code>labs()</code> to replace the axis and legend titles.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> It’s usually a good idea to replace short variable names with more detailed descriptions, and to include the units.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb95-1"><a href="graphics-for-communication.html#cb95-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb95-2"><a href="graphics-for-communication.html#cb95-2" aria-hidden="true" tabindex="-1"></a>geom_point(aes(colour<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb95-3"><a href="graphics-for-communication.html#cb95-3" aria-hidden="true" tabindex="-1"></a>geom_smooth(se<span class="op">=</span><span class="va">False</span>) <span class="op">+\</span></span>
+<span id="cb95-4"><a href="graphics-for-communication.html#cb95-4" aria-hidden="true" tabindex="-1"></a>labs(x<span class="op">=</span><span class="st">&quot;Engine displacement (L)&quot;</span>,</span>
+<span id="cb95-5"><a href="graphics-for-communication.html#cb95-5" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">&quot;Highway fuel economy (mpg)&quot;</span>,</span>
+<span id="cb95-6"><a href="graphics-for-communication.html#cb95-6" aria-hidden="true" tabindex="-1"></a>     colour<span class="op">=</span><span class="st">&quot;Car type&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-104-1.png" width="689" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>It’s possible to use mathematical equations instead of text strings. You have to tell matplotlib, which is used by plotnine to do the actuall plotting, to use LaTeX for rendering text:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb96-1"><a href="graphics-for-communication.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rc</span>
+<span id="cb96-2"><a href="graphics-for-communication.html#cb96-2" aria-hidden="true" tabindex="-1"></a>rc(<span class="st">&#39;text&#39;</span>, usetex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb96-3"><a href="graphics-for-communication.html#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="graphics-for-communication.html#cb96-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">&quot;x&quot;</span>: np.random.uniform(size<span class="op">=</span><span class="dv">10</span>),</span>
+<span id="cb96-5"><a href="graphics-for-communication.html#cb96-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">&quot;y&quot;</span>: np.random.uniform(size<span class="op">=</span><span class="dv">10</span>)})</span>
+<span id="cb96-6"><a href="graphics-for-communication.html#cb96-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="graphics-for-communication.html#cb96-7" aria-hidden="true" tabindex="-1"></a>ggplot(df, aes(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb96-8"><a href="graphics-for-communication.html#cb96-8" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb96-9"><a href="graphics-for-communication.html#cb96-9" aria-hidden="true" tabindex="-1"></a>labs(x<span class="op">=</span><span class="st">&quot;$</span><span class="ch">\\</span><span class="st">sum_{i = 1}^n{x_i^2}$&quot;</span>,</span>
+<span id="cb96-10"><a href="graphics-for-communication.html#cb96-10" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">&quot;$</span><span class="ch">\\</span><span class="st">alpha + </span><span class="ch">\\</span><span class="st">beta + </span><span class="ch">\\</span><span class="st">frac{</span><span class="ch">\\</span><span class="st">delta}{</span><span class="ch">\\</span><span class="st">theta}$&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-105-1.png" width="551" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>See <a href="https://matplotlib.org/3.1.1/tutorials/text/mathtext.html">the matplotlib documentation</a> for more information about how to write mathematical equations using LaTeX.</p>
+<div id="exercises-8" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Create one plot on the fuel economy data with customised <code>title</code>, <code>x</code>, <code>y</code>, and <code>colour</code> labels.</p></li>
+<li><p>The <code>geom_smooth()</code> is somewhat misleading because the <code>hwy</code> for large engines is skewed upwards due to the inclusion of lightweight sports cars with big engines. Use your modelling tools to fit and display a better model.</p></li>
+<li><p>Take an exploratory graphic that you’ve created in the last month, and add an informative title to make it easier for others to understand.</p></li>
+</ol>
+</div>
+</div>
+<div id="annotations" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Annotations</h2>
+<p>In addition to labelling major components of your plot, it’s often useful to label individual observations or groups of observations. The first tool you have at your disposal is <code>geom_text()</code>. <code>geom_text()</code> is similar to <code>geom_point()</code>, but it has an additional aesthetic: <code>label</code>. This makes it possible to add textual labels to your plots.</p>
+<p>There are two possible sources of labels. First, you might have a DataFrame that provides labels. The plot below isn’t terribly useful, but it illustrates a useful approach: pull out the most efficient car in each class with pandas, and then label it on the plot:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb97-1"><a href="graphics-for-communication.html#cb97-1" aria-hidden="true" tabindex="-1"></a>best_in_class <span class="op">=</span> mpg<span class="op">\</span></span>
+<span id="cb97-2"><a href="graphics-for-communication.html#cb97-2" aria-hidden="true" tabindex="-1"></a>.sort_values(by<span class="op">=</span><span class="st">&quot;hwy&quot;</span>, ascending<span class="op">=</span><span class="va">False</span>)<span class="op">\</span></span>
+<span id="cb97-3"><a href="graphics-for-communication.html#cb97-3" aria-hidden="true" tabindex="-1"></a>.groupby(<span class="st">&quot;class&quot;</span>)<span class="op">\</span></span>
+<span id="cb97-4"><a href="graphics-for-communication.html#cb97-4" aria-hidden="true" tabindex="-1"></a>.first()</span>
+<span id="cb97-5"><a href="graphics-for-communication.html#cb97-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="graphics-for-communication.html#cb97-6" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb97-7"><a href="graphics-for-communication.html#cb97-7" aria-hidden="true" tabindex="-1"></a>geom_point(aes(colour<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb97-8"><a href="graphics-for-communication.html#cb97-8" aria-hidden="true" tabindex="-1"></a>geom_text(aes(label<span class="op">=</span><span class="st">&quot;model&quot;</span>), data<span class="op">=</span>best_in_class)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-107-1.png" width="689" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>This is hard to read because the labels overlap with each other, and with the points. We can make things a little better by switching to <code>geom_label()</code> which draws a rectangle behind the text. We also use the <code>nudge_y</code> parameter to move the labels slightly above the corresponding points:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb98-1"><a href="graphics-for-communication.html#cb98-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb98-2"><a href="graphics-for-communication.html#cb98-2" aria-hidden="true" tabindex="-1"></a>geom_point(aes(colour<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb98-3"><a href="graphics-for-communication.html#cb98-3" aria-hidden="true" tabindex="-1"></a>geom_label(aes(label<span class="op">=</span><span class="st">&quot;model&quot;</span>), data<span class="op">=</span>best_in_class, nudge_y<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-108-1.png" width="689" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>That helps a bit, but if you look closely in the top-left hand corner, you’ll notice that there are two labels practically on top of each other. This happens because the highway mileage and displacement for the best cars in the compact and subcompact categories are exactly the same. There’s no way that we can fix these by applying the same transformation for every label. Instead, we can use the adjust_text argument. This useful argument, which employs the adjustText package under the hood, will automatically adjust labels so that they don’t overlap:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="graphics-for-communication.html#cb99-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb99-2"><a href="graphics-for-communication.html#cb99-2" aria-hidden="true" tabindex="-1"></a>geom_point(aes(colour<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb99-3"><a href="graphics-for-communication.html#cb99-3" aria-hidden="true" tabindex="-1"></a>geom_point(data<span class="op">=</span>best_in_class, fill<span class="op">=</span><span class="st">&#39;none&#39;</span>) <span class="op">+\</span></span>
+<span id="cb99-4"><a href="graphics-for-communication.html#cb99-4" aria-hidden="true" tabindex="-1"></a>geom_label(aes(label<span class="op">=</span><span class="st">&quot;model&quot;</span>), data<span class="op">=</span>best_in_class, adjust_text<span class="op">=</span>{</span>
+<span id="cb99-5"><a href="graphics-for-communication.html#cb99-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;expand_points&#39;</span>: (<span class="fl">1.5</span>, <span class="fl">1.5</span>),</span>
+<span id="cb99-6"><a href="graphics-for-communication.html#cb99-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">&#39;arrowprops&#39;</span>: {</span>
+<span id="cb99-7"><a href="graphics-for-communication.html#cb99-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;arrowstyle&#39;</span>: <span class="st">&#39;-&#39;</span></span>
+<span id="cb99-8"><a href="graphics-for-communication.html#cb99-8" aria-hidden="true" tabindex="-1"></a>    }})</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-109-1.png" width="689" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Note another handy technique used here: I added a second layer of large, hollow points to highlight the points that I’ve labelled.</p>
+<p>You can sometimes use the same idea to replace the legend with labels placed directly on the plot. It’s not wonderful for this plot, but it isn’t too bad.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>) with the adjustText package.]
+(<code>theme(legend_position="none"</code>) turns the legend off — we’ll talk about it more shortly.)</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb100-1"><a href="graphics-for-communication.html#cb100-1" aria-hidden="true" tabindex="-1"></a>class_avg <span class="op">=</span> mpg<span class="op">\</span></span>
+<span id="cb100-2"><a href="graphics-for-communication.html#cb100-2" aria-hidden="true" tabindex="-1"></a>.groupby(<span class="st">&quot;class&quot;</span>)[<span class="st">&quot;displ&quot;</span>,<span class="st">&quot;hwy&quot;</span>].median()<span class="op">\</span></span>
+<span id="cb100-3"><a href="graphics-for-communication.html#cb100-3" aria-hidden="true" tabindex="-1"></a>.reset_index()</span>
+<span id="cb100-4"><a href="graphics-for-communication.html#cb100-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-5"><a href="graphics-for-communication.html#cb100-5" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>, colour<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb100-6"><a href="graphics-for-communication.html#cb100-6" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb100-7"><a href="graphics-for-communication.html#cb100-7" aria-hidden="true" tabindex="-1"></a>geom_label(aes(label<span class="op">=</span><span class="st">&quot;class&quot;</span>), data<span class="op">=</span>class_avg, size<span class="op">=</span><span class="dv">16</span>, label_size<span class="op">=</span><span class="dv">0</span>, adjust_text<span class="op">=</span>{<span class="st">&#39;expand_points&#39;</span>: (<span class="dv">0</span>, <span class="dv">0</span>)}) <span class="op">+\</span></span>
+<span id="cb100-8"><a href="graphics-for-communication.html#cb100-8" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb100-9"><a href="graphics-for-communication.html#cb100-9" aria-hidden="true" tabindex="-1"></a>theme(legend_position<span class="op">=</span><span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-110-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Alternatively, you might just want to add a single label to the plot, but you’ll still need to create a DataFrame. Often, you want the label in the corner of the plot, so it’s convenient to create a new DataFrame using <code>pd.DataFrame()</code> and <code>max()</code> to compute the maximum values of x and y.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb101-1"><a href="graphics-for-communication.html#cb101-1" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> pd.DataFrame({<span class="st">&quot;displ&quot;</span>: [mpg.displ.<span class="bu">max</span>()],</span>
+<span id="cb101-2"><a href="graphics-for-communication.html#cb101-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;hwy&quot;</span>: [mpg.hwy.<span class="bu">max</span>()],</span>
+<span id="cb101-3"><a href="graphics-for-communication.html#cb101-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;label&quot;</span>: <span class="st">&quot;Increasing engine size is </span><span class="ch">\n</span><span class="st">related to decreasing fuel economy.&quot;</span>})</span>
+<span id="cb101-4"><a href="graphics-for-communication.html#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-5"><a href="graphics-for-communication.html#cb101-5" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb101-6"><a href="graphics-for-communication.html#cb101-6" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb101-7"><a href="graphics-for-communication.html#cb101-7" aria-hidden="true" tabindex="-1"></a>geom_text(aes(label<span class="op">=</span><span class="st">&quot;label&quot;</span>), data<span class="op">=</span>label, va<span class="op">=</span><span class="st">&quot;top&quot;</span>, ha<span class="op">=</span><span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-111-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>If you want to place the text exactly on the borders of the plot, you can use <code>+np.Inf</code> and <code>-np.Inf</code>:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb102-1"><a href="graphics-for-communication.html#cb102-1" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> pd.DataFrame({<span class="st">&quot;displ&quot;</span>: [np.Inf],</span>
+<span id="cb102-2"><a href="graphics-for-communication.html#cb102-2" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;hwy&quot;</span>: [np.Inf],</span>
+<span id="cb102-3"><a href="graphics-for-communication.html#cb102-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">&quot;label&quot;</span>: <span class="st">&quot;Increasing engine size is </span><span class="ch">\n</span><span class="st">related to decreasing fuel economy.&quot;</span>})</span>
+<span id="cb102-4"><a href="graphics-for-communication.html#cb102-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-5"><a href="graphics-for-communication.html#cb102-5" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb102-6"><a href="graphics-for-communication.html#cb102-6" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
+<span id="cb102-7"><a href="graphics-for-communication.html#cb102-7" aria-hidden="true" tabindex="-1"></a>geom_text(aes(label<span class="op">=</span><span class="st">&quot;label&quot;</span>), data<span class="op">=</span>label, va<span class="op">=</span><span class="st">&quot;top&quot;</span>, ha<span class="op">=</span><span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-112-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>In these examples, I manually broke the label up into lines using <code>"\n"</code>. Another approach is to use the <code>fill</code> function from the <code>textwrap</code> module to automatically add line breaks, given the number of characters you want per line:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb103-1"><a href="graphics-for-communication.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> textwrap <span class="im">import</span> fill</span>
+<span id="cb103-2"><a href="graphics-for-communication.html#cb103-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb103-3"><a href="graphics-for-communication.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(fill(<span class="st">&quot;Increasing engine size is related to decreasing fuel economy.&quot;</span>, width<span class="op">=</span><span class="dv">40</span>))</span></code></pre></div>
+<p>Note the use of <code>ha</code> and <code>va</code> to control the alignment of the label. The figure below shows all nine possible combinations.</p>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-114-1.png" width="531" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>Remember, in addition to <code>geom_text()</code>, you have many other geoms in plotnine available to help annotate your plot. A few ideas:</p>
+<ul>
+<li><p>Use <code>geom_hline()</code> and <code>geom_vline()</code> to add reference lines. I often make
+them thick (<code>size=2</code>) and white (<code>colour="white"</code>), and draw them
+underneath the primary data layer. That makes them easy to see, without
+drawing attention away from the data.</p></li>
+<li><p>Use <code>geom_rect()</code> to draw a rectangle around points of interest. The
+boundaries of the rectangle are defined by aesthetics <code>xmin</code>, <code>xmax</code>,
+<code>ymin</code>, <code>ymax</code>.</p></li>
+<li><p>Use <code>geom_segment()</code> with the <code>arrow</code> argument to draw attention
+to a point with an arrow. Use aesthetics <code>x</code> and <code>y</code> to define the
+starting location, and <code>xend</code> and <code>yend</code> to define the end location.</p></li>
+</ul>
+<p>The only limit is your imagination (and your patience with positioning annotations to be aesthetically pleasing)!</p>
+<div id="exercises-9" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Exercises</h3>
+<ol style="list-style-type: decimal">
+<li><p>Use <code>geom_text()</code> with infinite positions to place text at the
+four corners of the plot.</p></li>
+<li><p>Read the documentation for <code>annotate()</code>. How can you use it to add a text
+label to a plot without having to create a DataFrame?</p></li>
+<li><p>How do labels with <code>geom_text()</code> interact with faceting? How can you
+add a label to a single facet? How can you put a different label in
+each facet? (Hint: think about the underlying data.)</p></li>
+<li><p>What arguments to <code>geom_label()</code> control the appearance of the background
+box?</p></li>
+<li><p>What are the four arguments to <code>arrow()</code>? How do they work? Create a series
+of plots that demonstrate the most important options.</p></li>
+</ol>
+</div>
+</div>
+<div id="themes" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Themes</h2>
+<p>Finally, you can customise the non-data elements of your plot with a theme:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb104-1"><a href="graphics-for-communication.html#cb104-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb104-2"><a href="graphics-for-communication.html#cb104-2" aria-hidden="true" tabindex="-1"></a>geom_point(aes(color<span class="op">=</span><span class="st">&quot;class&quot;</span>)) <span class="op">+\</span></span>
+<span id="cb104-3"><a href="graphics-for-communication.html#cb104-3" aria-hidden="true" tabindex="-1"></a>geom_smooth(se<span class="op">=</span><span class="va">False</span>) <span class="op">+\</span></span>
+<span id="cb104-4"><a href="graphics-for-communication.html#cb104-4" aria-hidden="true" tabindex="-1"></a>theme_xkcd()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-115-1.png" width="685" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p>plotnine includes twelve themes by default. The figure below shows eight of those. The <a href="https://plotnine.readthedocs.io/en/stable/api.html#themes">documentation</a> lists all available themes.</p>
+<p><img src="images/visualization-themes.png" width="500" style="margin-left: 0px;"></p>
+<p>Many people wonder why the default theme has a grey background. This was a deliberate choice because it puts the data forward while still making the grid lines visible. The white grid lines are visible (which is important because they significantly aid position judgements), but they have little visual impact and we can easily tune them out. The grey background gives the plot a similar typographic colour to the text, ensuring that the graphics fit in with the flow of a document without jumping out with a bright white background. Finally, the grey background creates a continuous field of colour which ensures that the plot is perceived as a single visual entity.</p>
+<p>It’s also possible to control individual components of each theme, like the size and colour of the font used for the y axis. Unfortunately, this level of detail is outside the scope of this book, so you’ll need to read the <a href="https://amzn.com/331924275X">ggplot2 book</a> for the full details. You can also create your own themes, if you are trying to match a particular corporate or journal style.</p>
+</div>
+<div id="saving-your-plots" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Saving your plots</h2>
+<p>The best way to get your plots out of Python and into your final write-up^[The original text discusses how to include your plot in R Markdown. While it’s possible to include Python code and graphics in an R Markdown document through the <a href="https://rstudio.github.io/reticulate/"><code>reticulate</code> package</a>, like this tutorial demonstrates, it’s beyond the scope of this text. If you’re interested, you can have a look at the <a href="https://github.com/datascienceworkshops/r4ds-python-plotnine">Github repository</a> related to this tutorial, which includes the .Rmd source.)
+is with the <code>.save()</code> method. There’s also the <code>ggsave()</code> function, but the plotnine documentation doesn’t recommend using this. The <code>.save()</code> method will save the plot to disk. In a Jupyter Notebook you can refer to the last returned value using <code>_</code>. Alternatively you first assing your plot to a variable.</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb105-1"><a href="graphics-for-communication.html#cb105-1" aria-hidden="true" tabindex="-1"></a>ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+</span> geom_point()</span></code></pre></div>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-117-1.png" width="541" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb106-1"><a href="graphics-for-communication.html#cb106-1" aria-hidden="true" tabindex="-1"></a>_.save(<span class="st">&quot;my-plot.pdf&quot;</span>)</span></code></pre></div>
+<p>If you don’t specify the <code>width</code> and <code>height</code> they will be set to 6.4 and 4.8 inches, respectively. If you don’t specify <code>filename</code>, plotnine will generate one for you, e.g., “plotnine-save-297120101.pdf.” For reproducible code, you’ll want to specify them. You can learn more about the <code>.save()</code> method in the documentation.</p>
+<div id="figure-sizing" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Figure sizing</h3>
+<p>It can be a challenge to get your figure in the right size and shape. There are four options that control figure sizing: <code>width</code>, <code>height</code>, <code>units</code>, and <code>dpi</code>.</p>
+<p>If you find that you’re having to squint to read the text in your plot, you need to tweak <code>width</code> and <code>height</code>. If the <code>width</code> is larger than the size the figure is rendered in the final doc, the text will be too small; if <code>width</code> is smaller, the text will be too big. You’ll often need to do a little experimentation to figure out the right ratio between the <code>width</code> and the eventual width in your document. To illustrate the principle, the following three plots have <code>width</code> of 4, 6, and 8 respectively (and a height which is 0.618 times the width, i.e., the golden ratio):</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb107-1"><a href="graphics-for-communication.html#cb107-1" aria-hidden="true" tabindex="-1"></a>plot <span class="op">=</span> ggplot(mpg, aes(<span class="st">&quot;displ&quot;</span>, <span class="st">&quot;hwy&quot;</span>)) <span class="op">+</span> geom_point()</span>
+<span id="cb107-2"><a href="graphics-for-communication.html#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-3"><a href="graphics-for-communication.html#cb107-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> width <span class="kw">in</span> [<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>]:</span>
+<span id="cb107-4"><a href="graphics-for-communication.html#cb107-4" aria-hidden="true" tabindex="-1"></a>    figure_save <span class="op">=</span> <span class="st">&quot;figure/save-width-&quot;</span> <span class="op">+</span> <span class="bu">str</span>(width) <span class="op">+</span> <span class="st">&quot;.png&quot;</span></span>
+<span id="cb107-5"><a href="graphics-for-communication.html#cb107-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(figure_save)</span>
+<span id="cb107-6"><a href="graphics-for-communication.html#cb107-6" aria-hidden="true" tabindex="-1"></a>    plot.save(figure_save, width<span class="op">=</span>width, height<span class="op">=</span>width<span class="op">*</span><span class="fl">0.618</span>, dpi<span class="op">=</span><span class="dv">300</span>, verbose<span class="op">=</span><span class="va">False</span>)</span></code></pre></div>
+<pre><code>figure/save-width-4.png
+figure/save-width-6.png
+figure/save-width-8.png</code></pre>
+<p><img src="figure/save-width-4.png" width="181" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p><img src="figure/save-width-6.png" width="255" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p><img src="figure/save-width-8.png" width="330" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>In ggplot2, you can also use <code>labs()</code> to add a subtitle and a caption.<a href="graphics-for-communication.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>We have to use <code>geom_point()</code> twice here because of an [issue](<a href="https://github.com/has2k1/plotnine/issues/324" class="uri">https://github.com/has2k1/plotnine/issues/324</a><a href="graphics-for-communication.html#fnref10" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="scales-and-zooming.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["plotnine.pdf", "plotnine.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
