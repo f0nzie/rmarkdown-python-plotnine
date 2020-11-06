@@ -62,6 +62,11 @@ build_book2:
 	Rscript -e "\
 	Sys.setenv(RSTUDIO_PANDOC='/usr/lib/rstudio/bin/pandoc');\
 	bookdown::render_book('index.Rmd', 'bookdown::gitbook')"
+
+# push main branch and github-pages
+push:
+	git push ;\
+	git subtree push --prefix public origin gh-pages	
 	
 
 open_book:
