@@ -13,7 +13,7 @@
   
   
   <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  
+  <meta name="github-repo" content="/f0nzie/rmarkdown-python-plotnine" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Ch. 6 Graphics for communication | Data Visualization with PlotNine" />
@@ -237,7 +237,7 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="graphics-for-communication" class="section level1" number="6">
 <h1><span class="header-section-number">Ch. 6</span> Graphics for communication</h1>
-<p><em>Last update: Wed Oct 28 23:55:04 2020 -0500 (abfa111)</em></p>
+<p><em>Last update: Fri Nov 6 11:33:28 2020 -0600 (420d787)</em></p>
 <div id="introduction-1" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Introduction</h2>
 <p>Now that you understand your data, you need to <em>communicate</em> your understanding to others. Your audience will likely not share your background knowledge and will not be deeply invested in the data. To help others quickly build up a good mental model of the data, you will need to invest considerable effort in making your plots as self-explanatory as possible. In this chapter, you’ll learn some of the tools that plotnine provides to do so.</p>
@@ -271,7 +271,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb96-8"><a href="graphics-for-communication.html#cb96-8" aria-hidden="true" tabindex="-1"></a>geom_point() <span class="op">+\</span></span>
 <span id="cb96-9"><a href="graphics-for-communication.html#cb96-9" aria-hidden="true" tabindex="-1"></a>labs(x<span class="op">=</span><span class="st">&quot;$</span><span class="ch">\\</span><span class="st">sum_{i = 1}^n{x_i^2}$&quot;</span>,</span>
 <span id="cb96-10"><a href="graphics-for-communication.html#cb96-10" aria-hidden="true" tabindex="-1"></a>     y<span class="op">=</span><span class="st">&quot;$</span><span class="ch">\\</span><span class="st">alpha + </span><span class="ch">\\</span><span class="st">beta + </span><span class="ch">\\</span><span class="st">frac{</span><span class="ch">\\</span><span class="st">delta}{</span><span class="ch">\\</span><span class="st">theta}$&quot;</span>)</span></code></pre></div>
-<p><img src="plotnine_files/figure-html/unnamed-chunk-105-1.png" width="551" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
+<p><img src="plotnine_files/figure-html/unnamed-chunk-105-1.png" width="545" class="md:w-3/4 lg:w-2/3" style="display: block; margin: auto;" /></p>
 <p>See <a href="https://matplotlib.org/3.1.1/tutorials/text/mathtext.html">the matplotlib documentation</a> for more information about how to write mathematical equations using LaTeX.</p>
 <div id="exercises-8" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Exercises</h3>
@@ -463,7 +463,16 @@ figure/save-width-8.png</code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": null,
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
 "fontsettings": {
 "theme": "white",
 "family": "sans",

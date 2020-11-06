@@ -8,6 +8,28 @@ I liked the article so much that I decided to make it a "minimal book" with R [b
 
 What I am seeing, more and more lately, are Python analysis being written in Rmarkdown instead of Jupyter notebooks. This will bring a significant  change in data science, machine learning, and reproducibility due to the flexible nature of Rmarkdown. And of course, mingling tightly Python  and R, through a common document, as both can share data objects.
 
+## Structure
+
+1. This book is entirely written in `python-rmarkdown`, which esentially means the author wrote it in **Rmarkdown** with most of the code chunks using **Python** as the [knitr]() engine.
+
+2. This book uses a virtual environment created with the **GNU Python** package `virtualenv`. Each of the chapters of the book loads the Python environment `pyenv` before running the Python code in the code blocks. So, it is important that the `pyenv` environment is installed before you start building (knitting) the book.
+
+3. The environment `pyenv` is not available beforehand. You have to install it yourself. You can do it manually, or you could use the `Makefile` rules also available in this repository. The rule to create the Python environment is `make create_pyenv`.
+
+4. The recipe (list of packages and Python version) is provided by the file `requirements.txt`. The rule `make create_pyenv` will read the recipe and build the environment `pyenv` accordingly.
+
+5. The settings for building this [bookdown]() book are located in the files: `_bookdown.yml`, `_output.yml`, and `index.Rmd`.
+
+6. The environment `pyenv` comes with `Jupyter` installed, and will open the default `ipynb` notebook when the installation of the environment is completed.
+
+7. The main packages behind `python-rmarkdown` are: `reticulate`, `bookdown`, `knitr`, `rmarkdown`, and others. At least you have to have an R installation with these packages installed.
+
+8. Every chapter has a time updating stamp that will inform the user when was the last time that chapter was updated. The timestamp is located right after the main chapter title.
+
+9. Each of the chapters is formatted in the `Rmd` file itself via its own `knitr::opts_chunk$set()` function. This can, of course, be improved by moving the block to its own R script, which make sufficent to load the script with `source("R/script.R")` instead of having to copy-pasted on each of the chapter files.
+
+
+
 ## Minimal Book of `plotnine`
 
 The goal of `plotnine-book` is to show a practical application of a book where all the computations and plots have been generated using **Python**. **Rmarkdown** is the format being used in the writing of each of the chapters instead of the classic **Jupyter** notebooks.
@@ -38,32 +60,31 @@ This book uses **Python** and Python packages for the generation of tables, plot
 
 -   warnings
 
+
 ## Pre-requisites
 
 1.  A Python virtual environment with GNU Python and `virtualenv`. We will not use `conda` this time.
 2.  An installation of R. I used R-3.6.3 to build this book. 
 3.  A computer able to run GNU `make` to process the `Makefile` rules for this book.
 
-## Build the book
+## Building the book
 
-### Update current R installation with a recipe
+### Install the Python environment
+This `Makefile` rule will automatically create the Python environment for you:
 
-Since we will be using some R packages to build the Rmarkdown book, among them `knitr`, first, we need to update our R installation. There is a rule in Makefile that takes care of that. Run it from the terminal with:
+    make create_env
 
-```
-make renv/library
-```
+## Build the gitbook
 
-This will update the packages according to the recipe in the file `renv.lock`.
-
-### Build the gitbook
-
-Once R gets updated, we are ready to build the book. From a terminal, run:
+Once R and Python are installed and updated, we are ready to build the book. From a terminal, run:
 
     make gitbook
 
 If the book builds successfully, it should open your browser with the main page of the book. This is all handled by `make` and the commands in `Makefile`.
 
+## Push the book to GitHub
+
+    make push
 
 
 ## Optional after building the book
@@ -81,3 +102,14 @@ This deletes the auxiliary files that were created during the book building proc
 Does `make tidy` plus deletes the publication folder, to start over fresh.
 
     make clean
+
+
+### Optional: Update current R installation with a recipe
+
+Since we will be using some R packages to build the Rmarkdown book, among them `knitr`, first, we need to update our R installation. There is a rule in Makefile that takes care of that. Run it from the terminal with:
+
+```
+make renv/library
+```
+
+This will update the packages according to the recipe in the file `renv.lock`.
