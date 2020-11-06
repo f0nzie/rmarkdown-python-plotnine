@@ -24,18 +24,21 @@ else
 endif
 
 
-.PHONY: pyenv
-pyenv:
+# create virtualenv and start Jupyter with default notebook
+.PHONY: create_pyenv
+create_pyenv:
 	if [ -d ${PYTHON_ENV_DIR} ]; then rm -rf ${PYTHON_ENV_DIR};fi ;\
 	~/anaconda3/bin/conda config --set auto_activate_base false ;\
 	python --version ;\
 	# sudo apt-get install -y python3-venv ;\
+	# create environment
 	/usr/bin/python3 -m virtualenv pyenv --python=python3.7 ;\
 	source pyenv/bin/activate ;\
 	python -V ;\
 	pip install -U pip ;\
 	pip install -Ur requirements.txt ;\
-	jupyter-notebook ${START_NOTEBOOK}
+	jupyter-notebook ${START_NOTEBOOK} ;\
+	~/anaconda3/bin/conda config --set auto_activate_base true ;\
 
 
 renv/library: renv.lock
