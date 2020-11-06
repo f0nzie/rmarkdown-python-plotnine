@@ -48,7 +48,7 @@ renv/library: renv.lock
 
 # knit the book and then open it in the browser
 .PHONY: gitbook1 gitbook2
-gitbook1: build_book1 open_book
+gitbook: build_book1 open_book
 
 gitbook2: build_book2 open_book
 
