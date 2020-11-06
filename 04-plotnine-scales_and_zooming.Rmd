@@ -1,5 +1,8 @@
 # Scales and Zooming
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 04-plotnine-scales_and_zooming.Rmd", intern = TRUE)`_
+
+
 ```{r, echo=FALSE}
 library(reticulate)
 use_virtualenv("./pyenv", required = TRUE)

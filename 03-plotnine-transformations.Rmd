@@ -1,5 +1,7 @@
 # Transformations
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 03-plotnine-transformations.Rmd", intern = TRUE)`_
+
 
 ```{r, echo=FALSE}
 library(reticulate)

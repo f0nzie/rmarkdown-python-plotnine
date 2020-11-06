@@ -1,5 +1,7 @@
 # Data visualisation with `plotnine`
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 01-plotnine-data_visualization.Rmd", intern = TRUE)`_
+
 ```{r, echo=TRUE}
 library(reticulate)
 use_virtualenv("./pyenv", required = TRUE)

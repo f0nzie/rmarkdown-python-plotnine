@@ -1,5 +1,7 @@
 # Aesthetics and Geometry
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 02-aesthetics_geometry.Rmd", intern = TRUE)`_
+
 
 ```{r , echo=FALSE}
 library(reticulate)

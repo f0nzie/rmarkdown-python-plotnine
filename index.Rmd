@@ -15,6 +15,8 @@ editor_options:
 
 # Preface
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- index.Rmd", intern = TRUE)`_
+
 [plotnine](https://github.com/has2k1/plotnine) is a data visualisation package for Python based on the grammar of graphics, created by Hassan Kibirige.
 Its API is similar to [ggplot2](https://ggplot2.tidyverse.org/), a widely successful R package by [Hadley Wickham and others](https://ggplot2.tidyverse.org/authors.html).[^index-1]
 

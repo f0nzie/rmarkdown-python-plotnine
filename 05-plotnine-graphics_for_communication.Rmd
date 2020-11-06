@@ -1,5 +1,8 @@
 # Graphics for communication
 
+_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 05-plotnine-graphics_for_communication.Rmd", intern = TRUE)`_
+
+
 ```{r, echo=FALSE}
 library(reticulate)
 use_virtualenv("./pyenv", required = TRUE)
