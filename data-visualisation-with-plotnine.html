@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Ch. 2 Data visualisation with plotnine | Data Visualization with PlotNine</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21.4 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Ch. 2 Data visualisation with plotnine | Data Visualization with PlotNine" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Jeroen Janssens" />
 
 
-<meta name="date" content="2020-11-06" />
+<meta name="date" content="2020-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="aesthetics-and-geometry.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -240,11 +240,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <p><em>Last update: Fri Nov 6 11:33:28 2020 -0600 (420d787)</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-visualisation-with-plotnine.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span>
 <span id="cb1-2"><a href="data-visualisation-with-plotnine.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_virtualenv</span>(<span class="st">&quot;./pyenv&quot;</span>, <span class="at">required =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="data-visualisation-with-plotnine.html#cb1-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.show =</span> <span class="st">&quot;hold&quot;</span>,</span>
-<span id="cb1-4"><a href="data-visualisation-with-plotnine.html#cb1-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
-<span id="cb1-5"><a href="data-visualisation-with-plotnine.html#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">out.extra =</span> <span class="st">&quot;class=</span><span class="sc">\&quot;</span><span class="st">md:w-3/4 lg:w-2/3</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
-<span id="cb1-6"><a href="data-visualisation-with-plotnine.html#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dpi =</span> <span class="dv">300</span>,</span>
-<span id="cb1-7"><a href="data-visualisation-with-plotnine.html#cb1-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">comment =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="data-visualisation-with-plotnine.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="data-visualisation-with-plotnine.html#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.show =</span> <span class="st">&quot;hold&quot;</span>,</span>
+<span id="cb1-5"><a href="data-visualisation-with-plotnine.html#cb1-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>,</span>
+<span id="cb1-6"><a href="data-visualisation-with-plotnine.html#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">out.extra =</span> <span class="st">&quot;class=</span><span class="sc">\&quot;</span><span class="st">md:w-3/4 lg:w-2/3</span><span class="sc">\&quot;</span><span class="st">&quot;</span>,</span>
+<span id="cb1-7"><a href="data-visualisation-with-plotnine.html#cb1-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">dpi =</span> <span class="dv">300</span>,</span>
+<span id="cb1-8"><a href="data-visualisation-with-plotnine.html#cb1-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">comment =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="data-visualisation-with-plotnine.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-2"><a href="data-visualisation-with-plotnine.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine.data <span class="im">import</span> <span class="op">*</span></span>
 <span id="cb2-3"><a href="data-visualisation-with-plotnine.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
