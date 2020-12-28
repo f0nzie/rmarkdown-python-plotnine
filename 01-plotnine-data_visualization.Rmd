@@ -1,10 +1,11 @@
 # Data visualisation with `plotnine`
 
-_Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 01-plotnine-data_visualization.Rmd", intern = TRUE)`_
+*Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 01-plotnine-data_visualization.Rmd", intern = TRUE)`*
 
 ```{r, echo=TRUE}
 library(reticulate)
 use_virtualenv("./pyenv", required = TRUE)
+
 knitr::opts_chunk$set(fig.show = "hold",
                       fig.align = "center",
                       out.extra = "class=\"md:w-3/4 lg:w-2/3\"",
@@ -84,9 +85,11 @@ If you'd like to learn more about the theoretical underpinnings of plotnine befo
 
 ### Prerequisites
 
-This tutorial focusses on plotnine. We'll also use a little numpy and pandas for data manipulation. To access the datasets, help pages, and functions that we will use in this tutorial, import^[While it's generally considered to be bad practice to import everything into the global namespace, I think it's fine to do this in an ad-hoc environment such as a notebook as it makes using the many functions plotnine provides more convenient. An additional advantage is that the resulting code more closely resembles the original ggplot2 code. Alternatively, it's quite common to `import plotnine as p9` and prefix every function with `p9.`] the necessary packages by running this code:
+This tutorial focusses on plotnine. We'll also use a little numpy and pandas for data manipulation. To access the datasets, help pages, and functions that we will use in this tutorial, import[^plotnine-data_visualization-1] the necessary packages by running this code:
 
-If you run this code and get the error message `ModuleNotFoundError: No module named 'plotnine'`, you'll need to first install it[\^](This tutorial was compiled with a [fork from version 0.6.0](https://github.com/jeroenjanssens/plotnine) that fixes an [issue](https://github.com/has2k1/plotnine/pull/325) related to using `ha` and `va` in `aes()`.), then run the code once again.
+[^plotnine-data_visualization-1]: While it's generally considered to be bad practice to import everything into the global namespace, I think it's fine to do this in an ad-hoc environment such as a notebook as it makes using the many functions plotnine provides more convenient. An additional advantage is that the resulting code more closely resembles the original ggplot2 code. Alternatively, it's quite common to `import plotnine as p9` and prefix every function with `p9.`
+
+If you run this code and get the error message `ModuleNotFoundError: No module named 'plotnine'`, you'll need to first install it[\^](This%20tutorial%20was%20compiled%20with%20a%20%5Bfork%20from%20version%200.6.0%5D(https://github.com/jeroenjanssens/plotnine)%20that%20fixes%20an%20%5Bissue%5D(https://github.com/has2k1/plotnine/pull/325)%20related%20to%20using%20%60ha%60%20and%20%60va%60%20in%20%60aes()%60.), then run the code once again.
 
     ! pip install plotnine[all]
 
@@ -114,9 +117,9 @@ To learn more about `mpg`, open its help page by running `?mpg`.
 
 ### Creating a ggplot
 
-To plot `mpg`, run this code[^plotnine-data_visualization-1] to put `displ` on the x-axis and `hwy` on the y-axis:
+To plot `mpg`, run this code[^plotnine-data_visualization-2] to put `displ` on the x-axis and `hwy` on the y-axis:
 
-[^plotnine-data_visualization-1]: If you dislike the continuation character `\` then an alternative syntax is to wrap the entire expression in parentheses so that it's not needed.
+[^plotnine-data_visualization-2]: If you dislike the continuation character `\` then an alternative syntax is to wrap the entire expression in parentheses so that it's not needed.
 
 ```{python, results="hide"}
 ggplot(data=mpg) +\

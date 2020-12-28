@@ -6,6 +6,7 @@ _Last update: `r system("git log -1 --format=\"%ad (%h)\" -- 05-plotnine-graphic
 ```{r, echo=FALSE}
 library(reticulate)
 use_virtualenv("./pyenv", required = TRUE)
+
 knitr::opts_chunk$set(fig.show = "hold",
                       fig.align = "center",
                       out.extra = "class=\"md:w-3/4 lg:w-2/3\"",
